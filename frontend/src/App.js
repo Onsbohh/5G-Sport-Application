@@ -1,5 +1,6 @@
 import './App.css';
 import Rectangle from "./components/Rectangle";
+import Menu from "./components/Menu";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
               justifyContent: "center",
               alignItems: "center",
           }}>
+              <Menu/>
               <Rectangle/>
           </div>
       </div>

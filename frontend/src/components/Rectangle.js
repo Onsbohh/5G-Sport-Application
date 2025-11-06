@@ -1,15 +1,19 @@
 import React from "react";
 import hockey_rink from './hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
-function Rectangle () {
+
+const Rectangle = () => {
     const style = {
         width: "600px",
-        height: "400px",
+        height: "410px",
         border: "2px solid #000",
         marginTop: "50px",
         position: "relative"
     }
-    return <div style={style}>
+    return (
+        <div>
+            Video stream here
+        <div style={style}>
         <img
             src={hockey_rink}
             alt={"hockey rink"}
@@ -22,6 +26,8 @@ function Rectangle () {
         <PlayerIcon top={"20px"} left={"50px"}/>
         <PlayerIcon top={"70px"} left={"90px"}/>
         <PlayerIcon top={"150px"} left={"200px"}/>
+        </div>
     </div>
+    )
 }
 export default Rectangle

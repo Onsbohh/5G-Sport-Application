@@ -1,6 +1,6 @@
 import React from "react";
 
-function PlayerIcon(props) {
+const PlayerIcon = (props) => {
     const style = {
         width: "30px",
         height: "30px",
