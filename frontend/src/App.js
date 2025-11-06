@@ -1,6 +1,7 @@
 import './App.css';
 import Rectangle from "./components/Rectangle";
 import Menu from "./components/Menu";
+import PlayerList from "./components/PlayerList";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           }}>
               <Menu/>
               <Rectangle/>
+              <PlayerList/>
           </div>
       </div>
   );
