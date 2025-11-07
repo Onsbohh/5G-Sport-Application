@@ -1,5 +1,5 @@
 import React from "react";
-import hockey_rink from './hockey_rink.svg'
+import hockey_rink from '../images/hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
 
 const Rectangle = () => {

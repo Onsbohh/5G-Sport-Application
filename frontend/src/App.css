@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+/* table styles */
+tr, td, th {
+  border: 2px solid #000
+}
