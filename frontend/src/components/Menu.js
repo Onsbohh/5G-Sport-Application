@@ -1,9 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import MenuIcon from "./MenuIcon";
 import heart_icon from "../images/heart_icon.svg"
 import ecg_icon from "../images/ecg_icon.svg"
+import HeartRatePopup from "./HeartRatePopup";
 
 const Menu = () => {
+
+    const [showPopUp, setShowPopUp] = useState(false)
+
+    const openPopUp = () => {
+        setShowPopUp(true)
+    }
+
+    const closePopUp = () => {
+        setShowPopUp(false)
+    }
+
     const style = {
         border: "2px solid #000",
         marginTop: "50px",
@@ -18,7 +30,7 @@ const Menu = () => {
             <table style={style}>
                 <tr>
                     <td>
-                        <MenuIcon image={heart_icon}/>
+                        <MenuIcon image={heart_icon} onClick={openPopUp}/>
                     </td>
                 </tr>
                 <tr>
@@ -30,6 +42,9 @@ const Menu = () => {
                     <th>Opt 3</th>
                 </tr>
             </table>
+
+            {showPopUp && <HeartRatePopup onClose={closePopUp}/>}
+
         </div>
     )
 }

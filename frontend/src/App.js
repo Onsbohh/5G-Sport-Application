@@ -2,8 +2,9 @@ import './App.css';
 import Rectangle from "./components/Rectangle";
 import Menu from "./components/Menu";
 import PlayerList from "./components/PlayerList";
+import HeartRatePopup from "./components/HeartRatePopup";
 
-function App() {
+const App = () => {
   return (
       <div className="App">
           <h1>5G Sport</h1>
