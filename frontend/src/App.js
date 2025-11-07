@@ -15,7 +15,8 @@ const App = () => {
           }}>
               <Menu/>
               <Rectangle/>
-              <PlayerList/>
+              <PlayerList team={"team 1"}/>
+              <PlayerList team={"team 2"}/>
           </div>
       </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-const PlayerList = () => {
+const PlayerList = (props) => {
     const style = {
         border: "2px solid #000",
         marginTop: "50px",
@@ -10,7 +10,7 @@ const PlayerList = () => {
         position:"relative"
     }
     return (
-        <div> List of players here
+        <div> List of {props.team} players
             <table style={style}>
                 <tr>
                     <th>Player 1</th>
