@@ -7,7 +7,10 @@ import HeartRatePopup from "./components/HeartRatePopup";
 const App = () => {
   return (
       <div className="App">
-          <h1>5G Sport</h1>
+          <header className="App-header">
+              <h1>5G Sport</h1>
+          </header>
+
           <div style={{
               display: "flex",
               justifyContent: "center",
