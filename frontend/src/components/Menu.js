@@ -3,17 +3,27 @@ import MenuIcon from "./MenuIcon";
 import heart_icon from "../images/heart_icon.svg"
 import ecg_icon from "../images/ecg_icon.svg"
 import HeartRatePopup from "./HeartRatePopup";
+import EcgPopup from "./EcgPopUp";
 
 const Menu = () => {
 
-    const [showPopUp, setShowPopUp] = useState(false)
+    const [showHeartPopUp, setShowHeartPopUp] = useState(false)
+    const [showEcgPopUp, setShowEcgPopUp] = useState(false)
 
-    const openPopUp = () => {
-        setShowPopUp(true)
+    const openHeartPopUp = () => {
+        setShowHeartPopUp(true)
     }
 
-    const closePopUp = () => {
-        setShowPopUp(false)
+    const openEcgPopUp = () => {
+        setShowEcgPopUp(true)
+    }
+
+    const closeHeartPopUp = () => {
+        setShowHeartPopUp(false)
+    }
+
+    const closeEcgPopUp = () => {
+        setShowEcgPopUp(false)
     }
 
     const style = {
@@ -30,12 +40,12 @@ const Menu = () => {
             <table style={style}>
                 <tr>
                     <td>
-                        <MenuIcon image={heart_icon} onClick={openPopUp}/>
+                        <MenuIcon image={heart_icon} onClick={openHeartPopUp}/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <MenuIcon image={ecg_icon}/>
+                        <MenuIcon image={ecg_icon} onClick={openEcgPopUp}/>
                     </td>
                 </tr>
                 <tr>
@@ -43,7 +53,8 @@ const Menu = () => {
                 </tr>
             </table>
 
-            {showPopUp && <HeartRatePopup onClose={closePopUp}/>}
+            {showHeartPopUp && <HeartRatePopup onClose={closeHeartPopUp}/>}
+            {showEcgPopUp && <EcgPopup onClose={closeEcgPopUp}/>}
 
         </div>
     )
