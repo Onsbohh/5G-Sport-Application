@@ -1,4 +1,7 @@
 import React from "react";
+import MenuIcon from "./MenuIcon";
+import heart_icon from "../images/heart_icon.svg"
+import ecg_icon from "../images/ecg_icon.svg"
 
 const Menu = () => {
     const style = {
@@ -14,10 +17,14 @@ const Menu = () => {
         <div> Menu here
             <table style={style}>
                 <tr>
-                    <th>Opt 1 (Menu icons)</th>
+                    <td>
+                        <MenuIcon image={heart_icon}/>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Opt 2</th>
+                    <td>
+                        <MenuIcon image={ecg_icon}/>
+                    </td>
                 </tr>
                 <tr>
                     <th>Opt 3</th>
