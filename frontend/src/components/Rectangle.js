@@ -14,18 +14,20 @@ const Rectangle = () => {
         <div>
             Video stream here
         <div style={style}>
-        <img
-            src={hockey_rink}
-            alt={"hockey rink"}
-            style={{
-                height:"100%",
-                width:"100%",
-                objectFit: "cover"
-        }}
+            <img
+                src={hockey_rink}
+                alt={"hockey rink"}
+                style={{
+                    height:"100%",
+                    width:"100%",
+                    objectFit: "cover"
+            }}
         />
-        <PlayerIcon top={"20px"} left={"50px"}/>
-        <PlayerIcon top={"70px"} left={"90px"}/>
-        <PlayerIcon top={"150px"} left={"200px"}/>
+            <PlayerIcon top={"200px"} left={"350px"} color={"blue"}/>
+            <PlayerIcon top={"20px"} left={"50px"} color={"blue"}/>
+            <PlayerIcon top={"70px"} left={"90px"} color={"red"}/>
+            <PlayerIcon top={"150px"} left={"200px"} color={"red"}/>
+
         </div>
     </div>
     )

@@ -5,7 +5,7 @@ const PlayerIcon = (props) => {
         width: "30px",
         height: "30px",
         borderRadius: "50%",
-        backgroundColor: "red",
+        backgroundColor: props.color,
         position: "absolute",
         top: props.top,
         left: props.left
