@@ -1,5 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
+import Menu from "./Menu";
+
 const PlayerList = (props) => {
+
+    const [showMenu, setShowMenu] = useState(false)
+
+    const openMenu = setShowMenu(true)
+
     const style = {
         border: "2px solid #000",
         marginTop: "50px",
@@ -9,19 +16,27 @@ const PlayerList = (props) => {
         left: "0px",
         position:"relative"
     }
+
+
+
     return (
         <div> List of {props.team} players
             <table style={style}>
                 <tr>
-                    <th>Player 1</th>
+                    <td>
+                        <button onClick={openMenu}>
+                            Player 1
+                        </button>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Player 2</th>
+                    <td>Player 2</td>
                 </tr>
                 <tr>
-                    <th>Player 3</th>
+                    <td>Player 3</td>
                 </tr>
             </table>
+            {showMenu && <Menu/>}
         </div>
     )
 }
