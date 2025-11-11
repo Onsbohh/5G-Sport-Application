@@ -9,7 +9,6 @@ const EcgPopup = (props) => {
     return (
         <div style={style}>
             Show selected player's ecg graph here
-            <button onClick={props.onClose}>Close</button>
         </div>
     )
 }

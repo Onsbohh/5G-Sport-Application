@@ -9,7 +9,6 @@ const HeartRatePopup = (props) => {
     return (
         <div style={style}>
             Show selected players heart rate here
-            <button onClick={props.onClose}>Close</button>
         </div>
     )
 }
