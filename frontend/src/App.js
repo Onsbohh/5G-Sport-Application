@@ -1,5 +1,5 @@
 import './App.css';
-import Rectangle from "./components/Rectangle";
+import Rink from "./components/Rink";
 import Menu from "./components/Menu";
 import PlayerList from "./components/PlayerList";
 import HeartRatePopup from "./components/HeartRatePopup";
@@ -10,15 +10,12 @@ const App = () => {
           <header className="App-header">
               <h1>5G Sport</h1>
           </header>
-
           <div style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
           }}>
-              <Menu/>
-              <Rectangle/>
-
+              <Rink/>
           </div>
       </div>
   );

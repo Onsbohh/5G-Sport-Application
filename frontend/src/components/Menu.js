@@ -6,48 +6,30 @@ import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 import menu_icon from "../images/menu_icon.svg"
 
-const Menu = () => {
+const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
 
+    /*
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
 
-    const handleMenuClick = () => {
-        showMenu ? closeMenu() : openMenu()
+     */
+
+    const toggleMenu = () => {
+        setShowMenu(prev => !prev)
     }
 
-    const handleHeartClick = () => {
-        showHeartPopUp ? closeHeartPopUp() : openHeartPopUp()
+    const toggleHeart = () => {
+        setShowHeartPopUp(prev => !prev)
     }
 
-    const handleEcgClick = () => {
-        showEcgPopUp ? closeEcgPopUp() : openEcgPopUp()
+    const toggleEcg = () => {
+        setShowEcgPopUp(prev => !prev)
     }
 
-    const openMenu = () => {
-        setShowMenu(true)
-    }
 
-    const openHeartPopUp = () => {
-        setShowHeartPopUp(true)
-    }
 
-    const openEcgPopUp = () => {
-        setShowEcgPopUp(true)
-    }
-
-    const closeHeartPopUp = () => {
-        setShowHeartPopUp(false)
-    }
-
-    const closeEcgPopUp = () => {
-        setShowEcgPopUp(false)
-    }
-
-    const closeMenu = () => {
-        setShowMenu(false)
-    }
-
+    /*
     const MenuList = () => {
         return (
             <div>
@@ -70,6 +52,8 @@ const Menu = () => {
         )
     }
 
+     */
+
     const style = {
         border: "2px solid #000",
         marginTop: "50px",
@@ -80,8 +64,9 @@ const Menu = () => {
         position:"relative"
     }
     return (
-        <div> Menu here
-            <button onClick={handleMenuClick}>
+        <div>
+            {/*
+            <button onClick={toggleMenu}>
                 <img
                     src={menu_icon}
                     alt={"menu icon"}
@@ -91,27 +76,28 @@ const Menu = () => {
                     }}
                 />
             </button>
-            {showMenu && <MenuList/>}
-            {/*
+            */}
+            {showMenu && (
             <table style={style}>
                 <tr>
                     <td>
-                        <MenuIcon image={heart_icon} onClick={openHeartPopUp}/>
+                        <MenuIcon image={heart_icon} onClick={toggleHeart}/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <MenuIcon image={ecg_icon} onClick={openEcgPopUp}/>
+                        <MenuIcon image={ecg_icon} onClick={toggleEcg}/>
                     </td>
                 </tr>
                 <tr>
                     <th>Opt 3</th>
                 </tr>
-            </table>
-         */}
+            </table>)}
 
+            {/*
             {showHeartPopUp && <HeartRatePopup/>}
             {showEcgPopUp && <EcgPopup/>}
+            */}
 
         </div>
     )

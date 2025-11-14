@@ -11,7 +11,8 @@ const PlayerIcon = (props) => {
         left: props.left
     }
     return (
-        <div style={style}>
+        <div>
+            <button style={style} onClick={props.onClick}></button>
         </div>
     )
 }

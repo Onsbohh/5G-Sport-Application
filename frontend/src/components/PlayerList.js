@@ -1,11 +1,17 @@
 import React, {useState} from "react";
 import Menu from "./Menu";
+import HeartRatePopup from "./HeartRatePopup";
+import EcgPopup from "./EcgPopUp";
 
 const PlayerList = (props) => {
 
     const [showMenu, setShowMenu] = useState(false)
+    const [showHeartPopUp, setShowHeartPopUp] = useState(false)
+    const [showEcgPopUp, setShowEcgPopUp] = useState(false)
 
-    const openMenu = setShowMenu(true)
+    const toggleMenu = () => {
+        setShowMenu(prev => !prev)
+    }
 
     const style = {
         border: "2px solid #000",
@@ -17,26 +23,50 @@ const PlayerList = (props) => {
         position:"relative"
     }
 
-
-
     return (
-        <div> List of {props.team} players
+        <div style={{display: "flex"}}>
             <table style={style}>
+                <thead>
+                <tr>
+                    <th scope="col">Player</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr>
                     <td>
-                        <button onClick={openMenu}>
-                            Player 1
+                        <button onClick={toggleMenu}>
+                            Player 2
                         </button>
                     </td>
                 </tr>
                 <tr>
-                    <td>Player 2</td>
+                    <td>
+                        <button>
+                            Player 2
+                        </button>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Player 3</td>
+                    <td>
+                        <button>
+                            Player 2
+                        </button>
+                    </td>
                 </tr>
+                </tbody>
             </table>
-            {showMenu && <Menu/>}
+            <Menu
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+                showEcgPopUp={showEcgPopUp}
+                setShowEcgPopUp={setShowEcgPopUp}
+                showHeartPopUp={showHeartPopUp}
+                setShowHeartPopUp={setShowHeartPopUp}
+            />
+
+            {showHeartPopUp && <HeartRatePopup/>}
+            {showEcgPopUp && <EcgPopup/>}
+
         </div>
     )
 }
