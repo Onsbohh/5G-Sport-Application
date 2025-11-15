@@ -64,7 +64,7 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
         left: "0px",
         position:"relative"
     }
-    if(!showMenu){
+    if(!player){
         return null
     }
     return (
@@ -97,7 +97,7 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
                 </tr>
             </table>
 
-            {showHeartPopUp && <HeartRatePopup/>}
+            {(showHeartPopUp && player) && <HeartRatePopup player={player}/>}
             {showEcgPopUp && <EcgPopup/>}
 
         </div>

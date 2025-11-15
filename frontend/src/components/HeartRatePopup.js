@@ -1,14 +1,18 @@
 import React from "react";
 
-const HeartRatePopup = (props) => {
+const HeartRatePopup = ({player}) => {
+    console.log('player whos heart rate to show ' + player.name)
     const style = {
         height: "150px",
         width: "150px",
         border: "2px solid #000"
     }
+    if(!player){
+        return null
+    }
     return (
         <div style={style}>
-            Show selected players heart rate here
+            {player.name}'s heart rate here
         </div>
     )
 }

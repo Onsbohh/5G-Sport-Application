@@ -6,6 +6,7 @@ import Menu from "./Menu";
 import Select from 'react-select';
 
 
+
 const Rink = () => {
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
@@ -78,12 +79,6 @@ const Rink = () => {
             <PlayerIcon top={"70px"} left={"90px"} color={"red"}/>
             <PlayerIcon top={"150px"} left={"200px"} color={"red"}/>
         </div>
-            <Select
-                defaultValue={selectedPlayer}
-                onChange={setSelectedPlayer}
-                options={playerOptions}
-
-            />
             <PlayerList
                 players={[
                     {
