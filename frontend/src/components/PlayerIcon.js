@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState} from "react";
+import Menu from "./Menu";
 
 const PlayerIcon = (props) => {
     const style = {

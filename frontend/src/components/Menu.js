@@ -15,9 +15,11 @@ const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcg
 
      */
 
+    /*
     const toggleMenu = () => {
         setShowMenu(prev => !prev)
     }
+     */
 
     const toggleHeart = () => {
         setShowHeartPopUp(prev => !prev)
@@ -63,6 +65,9 @@ const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcg
         left: "0px",
         position:"relative"
     }
+    if(!showMenu){
+        return null
+    }
     return (
         <div>
             {/*
@@ -77,7 +82,6 @@ const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcg
                 />
             </button>
             */}
-            {showMenu && (
             <table style={style}>
                 <tr>
                     <td>
@@ -92,12 +96,10 @@ const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcg
                 <tr>
                     <th>Opt 3</th>
                 </tr>
-            </table>)}
+            </table>
 
-            {/*
             {showHeartPopUp && <HeartRatePopup/>}
             {showEcgPopUp && <EcgPopup/>}
-            */}
 
         </div>
     )

@@ -3,8 +3,9 @@ import Menu from "./Menu";
 import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 
-const PlayerList = (props) => {
+const PlayerList = ({players, onPlayerClick}) => {
 
+    /*
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
@@ -12,6 +13,9 @@ const PlayerList = (props) => {
     const toggleMenu = () => {
         setShowMenu(prev => !prev)
     }
+
+     */
+    console.log(players)
 
     const style = {
         border: "2px solid #000",
@@ -28,33 +32,20 @@ const PlayerList = (props) => {
             <table style={style}>
                 <thead>
                 <tr>
-                    <th scope="col">Player</th>
+                    <th scope={"col"}>Player</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                {players.map((player) => (
+                <tr key={player.id}>
                     <td>
-                        <button onClick={toggleMenu}>
-                            Player 2
-                        </button>
+                        <button onClick={onPlayerClick}>{player.name}</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <button>
-                            Player 2
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button>
-                            Player 2
-                        </button>
-                    </td>
-                </tr>
+                ))}
                 </tbody>
             </table>
+            {/*}
             <Menu
                 showMenu={showMenu}
                 setShowMenu={setShowMenu}
@@ -66,6 +57,7 @@ const PlayerList = (props) => {
 
             {showHeartPopUp && <HeartRatePopup/>}
             {showEcgPopUp && <EcgPopup/>}
+            */}
 
         </div>
     )
