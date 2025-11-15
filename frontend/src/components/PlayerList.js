@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Menu from "./Menu";
 import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
+import Player from "./Player";
 
 const PlayerList = ({players, onPlayerClick}) => {
 
@@ -39,7 +40,7 @@ const PlayerList = ({players, onPlayerClick}) => {
                 {players.map((player) => (
                 <tr key={player.id}>
                     <td>
-                        <button onClick={onPlayerClick}>{player.name}</button>
+                        <Player name={player.name} onClick={() => onPlayerClick(player)}/>
                     </td>
                 </tr>
                 ))}

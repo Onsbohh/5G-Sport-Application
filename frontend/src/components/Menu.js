@@ -6,7 +6,7 @@ import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 import menu_icon from "../images/menu_icon.svg"
 
-const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
+const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
 
     /*
     const [showMenu, setShowMenu] = useState(false)
@@ -28,7 +28,6 @@ const Menu = ({showMenu, setShowMenu, showHeartPopUp, setShowHeartPopUp, showEcg
     const toggleEcg = () => {
         setShowEcgPopUp(prev => !prev)
     }
-
 
 
     /*
