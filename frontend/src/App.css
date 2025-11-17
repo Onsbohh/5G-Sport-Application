@@ -46,3 +46,7 @@ tr, td, th {
   border: 2px solid #000;
   background-color: white;
 }
+thead {
+  height: 20px;
+}
+

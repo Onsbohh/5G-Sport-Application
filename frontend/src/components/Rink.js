@@ -13,10 +13,12 @@ const Rink = () => {
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
     const [selectedPlayer, setSelectedPlayer] = useState(null)
+    const [isSelected, setIsSelected] = useState(false)
 
     // When a player's name or icon is clicked, show the menu for that player.
     const toggleMenu = (player) => {
         setSelectedPlayer(player)
+        setIsSelected(prev => !prev)
         setShowMenu(prev => !prev)
     }
 
@@ -78,6 +80,8 @@ const Rink = () => {
         />
             <PlayerIcons
                 players={players}
+                isSelected={isSelected}
+                setIsSelected={setIsSelected}
                 onPlayerClick={toggleMenu}
             />
         </div>

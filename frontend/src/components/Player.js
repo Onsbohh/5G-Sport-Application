@@ -4,7 +4,7 @@ import React, {useState} from "react";
 const Player = (props) => {
     return (
         <div>
-            <button onClick={props.onClick}>{props.id}.{props.name}</button>
+            <button onClick={props.onClick}>{props.id}.{props.name} {props.isSelected}</button>
         </div>
     )
 }

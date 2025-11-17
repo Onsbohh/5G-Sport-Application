@@ -2,7 +2,7 @@ import React from "react";
 import PlayerIcon from "./PlayerIcon";
 
 // Maps the players and places their icons on the hockey rink.
-const PlayerIcons = ({players, onPlayerClick}) => {
+const PlayerIcons = ({players, onPlayerClick, isSelected, setIsSelected}) => {
     return (
         <div>
             {players.map((player) => (
@@ -11,7 +11,11 @@ const PlayerIcons = ({players, onPlayerClick}) => {
                     top={player.top}
                     left={player.left}
                     id={player.id}
-                    onClick={() => onPlayerClick(player)}
+                    isSelected={isSelected}
+                    setIsSelected={setIsSelected}
+                    onClick={() => {
+                        onPlayerClick(player);
+                    }}
                 />
             ))}
         </div>

@@ -8,20 +8,6 @@ import menu_icon from "../images/menu_icon.svg"
 
 // A popup menu, where the user can select information to show from their currently selected player.
 const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
-
-    /*
-    const [showMenu, setShowMenu] = useState(false)
-    const [showHeartPopUp, setShowHeartPopUp] = useState(false)
-    const [showEcgPopUp, setShowEcgPopUp] = useState(false)
-
-     */
-
-    /*
-    const toggleMenu = () => {
-        setShowMenu(prev => !prev)
-    }
-     */
-
     const toggleHeart = () => {
         setShowHeartPopUp(prev => !prev)
     }
@@ -30,36 +16,11 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
         setShowEcgPopUp(prev => !prev)
     }
 
-
-    /*
-    const MenuList = () => {
-        return (
-            <div>
-                <table style={style}>
-                    <tr>
-                        <td>
-                            <MenuIcon image={heart_icon} onClick={handleHeartClick}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <MenuIcon image={ecg_icon} onClick={handleEcgClick}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Opt 3</th>
-                    </tr>
-                </table>
-            </div>
-        )
-    }
-
-     */
-
     const style = {
         display: "flex",
         alignItems: "stretch",
-        border: "2px solid #000",
+        border: "1px solid #000",
+        borderCollapse: "collapse",
         marginTop: "50px",
         marginRight: "25px",
         left: "0px",
@@ -82,7 +43,7 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
                 />
             </button>
             */}
-            <table style={style}>
+            <table style={style} title={"menu_table"}>
                 <tr>
                     <td>
                         <MenuIcon image={heart_icon} onClick={toggleHeart}/>
