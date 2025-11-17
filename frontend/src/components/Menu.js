@@ -64,7 +64,7 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
         left: "0px",
         position:"relative"
     }
-    if(!player){
+    if(!player || !showMenu){
         return null
     }
     return (

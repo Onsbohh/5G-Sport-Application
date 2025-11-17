@@ -74,7 +74,7 @@ const Rink = () => {
                     objectFit: "cover"
             }}
         />
-            <PlayerIcon top={"200px"} left={"350px"} color={"blue"}/>
+            <PlayerIcon top={"200px"} left={"350px"} color={"blue"} onClick={toggleMenu}/>
             <PlayerIcon top={"20px"} left={"50px"} color={"blue"}/>
             <PlayerIcon top={"70px"} left={"90px"} color={"red"}/>
             <PlayerIcon top={"150px"} left={"200px"} color={"red"}/>
