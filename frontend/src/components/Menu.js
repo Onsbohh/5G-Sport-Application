@@ -6,6 +6,7 @@ import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 import menu_icon from "../images/menu_icon.svg"
 
+// A popup menu, where the user can select information to show from their currently selected player.
 const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
 
     /*

@@ -1,6 +1,7 @@
 import React from "react";
 import PlayerIcon from "./PlayerIcon";
 
+// Maps the players and places their icons on the hockey rink.
 const PlayerIcons = ({players, onPlayerClick}) => {
     return (
         <div>

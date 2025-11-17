@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+
+// Icons for different information shown for the selected player's popup menu.
 const MenuIcon = (props) => {
     /*
     const [showPopup, setShowPopup] = useState(false)

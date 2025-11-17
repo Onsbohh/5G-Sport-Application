@@ -7,7 +7,7 @@ import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
 
 
-
+// The main component that connects the hockey rink, player icons, player list and the player menus.
 const Rink = () => {
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)

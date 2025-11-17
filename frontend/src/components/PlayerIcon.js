@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Menu from "./Menu";
 
+// Creates a dot that represents a player on the field.
 const PlayerIcon = (props) => {
     const style = {
         width: "30px",

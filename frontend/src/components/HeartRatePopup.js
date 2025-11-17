@@ -1,5 +1,6 @@
 import React from "react";
 
+// A popup window, where the selected players heart rate is shown.
 const HeartRatePopup = ({player}) => {
     console.log('player whos heart rate to show ' + player.name)
     const style = {

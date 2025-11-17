@@ -4,6 +4,7 @@ import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 import Player from "./Player";
 
+// Lists the players.
 const PlayerList = ({players, onPlayerClick}) => {
 
     /*

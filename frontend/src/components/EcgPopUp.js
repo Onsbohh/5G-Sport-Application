@@ -1,5 +1,6 @@
 import React from "react";
 
+// A popup window where the selected players Ecg graph should be shown.
 const EcgPopup = (props) => {
     const style = {
         height: "150px",
