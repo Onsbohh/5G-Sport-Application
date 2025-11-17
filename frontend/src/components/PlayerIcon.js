@@ -4,13 +4,12 @@ import Menu from "./Menu";
 // Creates a dot that represents a player on the field.
 // TODO: Need to fetch the location of the player from the database and set is as the coordinates.
 const PlayerIcon = (props) => {
-
-    const [hover, setHover] = useState(false)
+    const isHovered = props.hoveredPlayer === props.id
     const style = {
         width: "30px",
         height: "30px",
         borderRadius: "50%",
-        backgroundColor: hover ? "grey" : props.color,
+        backgroundColor: isHovered ? "grey" : props.color,
         position: "absolute",
         top: props.top,
         left: props.left
@@ -20,14 +19,8 @@ const PlayerIcon = (props) => {
             <button
                 style={style}
                 onClick={props.onClick}
-                onMouseOver={(e) => {
-                    e.preventDefault()
-                    setHover(true)
-                }}
-                onMouseLeave={(e) => {
-                    e.preventDefault()
-                    setHover(false)
-                }}
+                onMouseEnter={props.onHover}
+                onMouseLeave={props.onLeave}
             >
                 {props.id}
             </button>

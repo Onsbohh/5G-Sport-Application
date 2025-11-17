@@ -14,6 +14,7 @@ const Rink = () => {
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
     const [selectedPlayer, setSelectedPlayer] = useState(null)
     const [isSelected, setIsSelected] = useState(false)
+    const [hoveredPlayer, setHoveredPlayer] = useState(null)
 
     // When a player's name or icon is clicked, show the menu for that player.
     const toggleMenu = (player) => {
@@ -21,6 +22,7 @@ const Rink = () => {
         setIsSelected(prev => !prev)
         setShowMenu(prev => !prev)
     }
+
 
     useEffect(() => {
         if(selectedPlayer){
@@ -104,11 +106,17 @@ const Rink = () => {
                 isSelected={isSelected}
                 setIsSelected={setIsSelected}
                 onPlayerClick={toggleMenu}
+                hoveredPlayer={hoveredPlayer}
+                onHover={setHoveredPlayer}
+                onLeave={() => setHoveredPlayer(null)}
             />
         </div>
             <PlayerList
                 players={players}
                 onPlayerClick={toggleMenu}
+                hoveredPlayer={hoveredPlayer}
+                onHover={setHoveredPlayer}
+                onLeave={() => setHoveredPlayer(null)}
             />
 
             {/*

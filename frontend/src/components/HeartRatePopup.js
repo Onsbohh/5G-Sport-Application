@@ -1,22 +1,27 @@
 import React from "react";
 
 // A popup window, where the selected players heart rate is shown.
-// TODO: Need to fetch the selected player's heart rate from the database.
+// TODO: Need to fetch the selected player's heart rate from the database. There should be options for current, average and max heart rate.
 const HeartRatePopup = ({player}) => {
     const style = {
-        display: "flex",
-        alignItems: "stretch",
         height: "150px",
         width: "150px",
         border: "2px solid #000",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        marginLeft: "15px",
+        fontSize: "20px",
     }
     if(!player){
         return null
     }
     return (
         <div style={style}>
-            {player.name}'s heart rate is {player.heart_rate}
+            <b>Average:</b>
+            {player.heart_rate} bpm <br/>
+            <b>Max:</b>
+            {player.heart_rate} bpm <br/>
+            <b>Current:</b>
+            {player.heart_rate} bpm
         </div>
     )
 }

@@ -6,7 +6,8 @@ const EcgPopup = ({player}) => {
         height: "150px",
         width: "150px",
         border: "2px solid #000",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        marginLeft: "15px"
     }
     return (
         <div style={style}>
