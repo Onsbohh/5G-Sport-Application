@@ -12,7 +12,7 @@ const HeartRatePopup = ({player}) => {
     }
     return (
         <div style={style}>
-            {player.name}'s heart rate here
+            {player.name}'s heart rate is {player.heart_rate}
         </div>
     )
 }
