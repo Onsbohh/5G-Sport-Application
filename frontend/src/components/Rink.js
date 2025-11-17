@@ -103,20 +103,24 @@ const Rink = () => {
         />
             <PlayerIcons
                 players={players}
-                isSelected={isSelected}
-                setIsSelected={setIsSelected}
+                selectedPlayer={selectedPlayer}
+                setSelectedPlayer={setSelectedPlayer}
                 onPlayerClick={toggleMenu}
                 hoveredPlayer={hoveredPlayer}
                 onHover={setHoveredPlayer}
                 onLeave={() => setHoveredPlayer(null)}
+                onPlayerSelect={setSelectedPlayer}
             />
         </div>
             <PlayerList
                 players={players}
                 onPlayerClick={toggleMenu}
+                selectedPlayer={selectedPlayer}
+                setSelectedPlayer={setSelectedPlayer}
                 hoveredPlayer={hoveredPlayer}
                 onHover={setHoveredPlayer}
                 onLeave={() => setHoveredPlayer(null)}
+                onPlayerSelect={setSelectedPlayer}
             />
 
             {/*

@@ -5,11 +5,12 @@ import Menu from "./Menu";
 // TODO: Need to fetch the location of the player from the database and set is as the coordinates.
 const PlayerIcon = (props) => {
     const isHovered = props.hoveredPlayer === props.id
+    const isSelected = props.selectedPlayer === props.id
     const style = {
         width: "30px",
         height: "30px",
         borderRadius: "50%",
-        backgroundColor: isHovered ? "grey" : props.color,
+        backgroundColor: isSelected || isHovered ? "grey" : props.color,
         position: "absolute",
         top: props.top,
         left: props.left
