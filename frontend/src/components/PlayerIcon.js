@@ -13,7 +13,7 @@ const PlayerIcon = (props) => {
     }
     return (
         <div>
-            <button style={style} onClick={props.onClick}></button>
+            <button style={style} onClick={props.onClick}>{props.id}</button>
         </div>
     )
 }

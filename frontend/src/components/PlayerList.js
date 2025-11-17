@@ -40,7 +40,10 @@ const PlayerList = ({players, onPlayerClick}) => {
                 {players.map((player) => (
                 <tr key={player.id}>
                     <td>
-                        <Player name={player.name} onClick={() => onPlayerClick(player)}/>
+                        <Player
+                            id={player.id}
+                            name={player.name}
+                            onClick={() => onPlayerClick(player)}/>
                     </td>
                 </tr>
                 ))}
