@@ -22,7 +22,7 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
         border: "1px solid #000",
         borderCollapse: "collapse",
         marginTop: "50px",
-        marginRight: "25px",
+        marginLeft: "25px",
         left: "0px",
         position:"relative"
     }

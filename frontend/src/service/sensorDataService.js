@@ -11,12 +11,6 @@ export const getEcgData = async (id) => {
     return response.data;
 }
 
-export const getAllHeartRateData = async () => {
-    const response = await httpService.get("/heart_rate")
-}
-export const getHeartRateData = async (id) => {
-    const response = await httpService.get(`/heart_rate/${id}`)
-}
 /* Backend does not support POST, PUT, DELETE
 export const postEcgData = async (ecgData) => {
     const response = await httpService.post("/ecg", ecgData);

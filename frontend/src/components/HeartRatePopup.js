@@ -1,6 +1,7 @@
 import React from "react";
 
 // A popup window, where the selected players heart rate is shown.
+// TODO: Need to fetch the selected player's heart rate from the database.
 const HeartRatePopup = ({player}) => {
     const style = {
         display: "flex",

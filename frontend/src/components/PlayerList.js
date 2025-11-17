@@ -5,10 +5,8 @@ import Player from "./Player";
 const PlayerList = ({players, onPlayerClick}) => {
     console.log(players)
     const style = {
-        border: "2px solid #000",
         marginTop: "50px",
         marginLeft: "25px",
-        height: "400px",
         width: "150px",
         left: "0px",
         position:"relative"
@@ -24,8 +22,13 @@ const PlayerList = ({players, onPlayerClick}) => {
                 </thead>
                 <tbody>
                 {players.map((player) => (
-                <tr key={player.id}>
-                    <td>
+                <tr
+                    key={player.id}
+                    style={{
+                        height: "30px"
+                    }}
+                >
+                    <td style={{height:"30px"}}>
                         <Player
                             id={player.id}
                             name={player.name}
@@ -37,5 +40,6 @@ const PlayerList = ({players, onPlayerClick}) => {
             </table>
         </div>
     )
+
 }
 export default PlayerList

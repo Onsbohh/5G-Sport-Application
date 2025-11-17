@@ -50,3 +50,8 @@ thead {
   height: 20px;
 }
 
+/* button styles */
+button:hover {
+    background-color: darkblue;
+}
+

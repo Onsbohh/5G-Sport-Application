@@ -52,8 +52,29 @@ const Rink = () => {
             heart_rate: "50",
             top: "300px",
             left: "90px"
+        },
+        {
+            id: 4,
+            name: "Gretzky",
+            heart_rate: "50",
+            top: "350px",
+            left: "140px"
+        },
+        {
+            id: 5,
+            name: "Gretzky",
+            heart_rate: "50",
+            top: "80px",
+            left: "300px"
         }
     ]
+
+    const playerOptions = players.map((player => {
+        return {
+            value: player.id,
+            label: player.name
+        }
+    }))
 
     const style = {
         width: "600px",
@@ -89,6 +110,21 @@ const Rink = () => {
                 players={players}
                 onPlayerClick={toggleMenu}
             />
+
+            {/*
+            <label>
+                <Select
+                    options={playerOptions}
+                    menuIsOpen={true}
+                    defaultValue={playerOptions[0]}
+                    placeholder={"Choose a player"}
+                    styles={{
+                        width: "70px"
+                    }}
+                />
+            </label>
+            */}
+
             <Menu
                 player={selectedPlayer}
                 showMenu={showMenu}
