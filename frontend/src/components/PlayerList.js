@@ -1,24 +1,9 @@
-import React, {useState} from "react";
-import Menu from "./Menu";
-import HeartRatePopup from "./HeartRatePopup";
-import EcgPopup from "./EcgPopUp";
+import React from "react";
 import Player from "./Player";
 
 // Lists the players.
 const PlayerList = ({players, onPlayerClick}) => {
-
-    /*
-    const [showMenu, setShowMenu] = useState(false)
-    const [showHeartPopUp, setShowHeartPopUp] = useState(false)
-    const [showEcgPopUp, setShowEcgPopUp] = useState(false)
-
-    const toggleMenu = () => {
-        setShowMenu(prev => !prev)
-    }
-
-     */
     console.log(players)
-
     const style = {
         border: "2px solid #000",
         marginTop: "50px",
@@ -50,20 +35,6 @@ const PlayerList = ({players, onPlayerClick}) => {
                 ))}
                 </tbody>
             </table>
-            {/*}
-            <Menu
-                showMenu={showMenu}
-                setShowMenu={setShowMenu}
-                showEcgPopUp={showEcgPopUp}
-                setShowEcgPopUp={setShowEcgPopUp}
-                showHeartPopUp={showHeartPopUp}
-                setShowHeartPopUp={setShowHeartPopUp}
-            />
-
-            {showHeartPopUp && <HeartRatePopup/>}
-            {showEcgPopUp && <EcgPopup/>}
-            */}
-
         </div>
     )
 }

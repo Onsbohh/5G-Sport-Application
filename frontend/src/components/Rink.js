@@ -14,6 +14,7 @@ const Rink = () => {
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
     const [selectedPlayer, setSelectedPlayer] = useState(null)
 
+    // When a player's name or icon is clicked, show the menu for that player.
     const toggleMenu = (player) => {
         setSelectedPlayer(player)
         setShowMenu(prev => !prev)
@@ -27,6 +28,7 @@ const Rink = () => {
         }
     }, [selectedPlayer]);
 
+    // Placeholder example players
     const players = [
         {
             id:1,
@@ -49,11 +51,6 @@ const Rink = () => {
             top: "300px",
             left: "90px"
         }
-    ]
-
-
-    const playerOptions = [
-        {value: "pertsa", label:"Pertsa"}
     ]
 
     const style = {
@@ -79,13 +76,6 @@ const Rink = () => {
                     objectFit: "cover"
             }}
         />
-            {/*
-            <PlayerIcon top={"200px"} left={"350px"} color={"blue"}/>
-            <PlayerIcon top={"20px"} left={"50px"} color={"blue"}/>
-            <PlayerIcon top={"70px"} left={"90px"} color={"red"}/>
-            <PlayerIcon top={"150px"} left={"200px"} color={"red"}/>
-            */}
-
             <PlayerIcons
                 players={players}
                 onPlayerClick={toggleMenu}

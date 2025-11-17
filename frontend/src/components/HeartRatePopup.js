@@ -2,11 +2,13 @@ import React from "react";
 
 // A popup window, where the selected players heart rate is shown.
 const HeartRatePopup = ({player}) => {
-    console.log('player whos heart rate to show ' + player.name)
     const style = {
+        display: "flex",
+        alignItems: "stretch",
         height: "150px",
         width: "150px",
-        border: "2px solid #000"
+        border: "2px solid #000",
+        backgroundColor: "white"
     }
     if(!player){
         return null

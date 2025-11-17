@@ -57,11 +57,11 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
      */
 
     const style = {
+        display: "flex",
+        alignItems: "stretch",
         border: "2px solid #000",
         marginTop: "50px",
         marginRight: "25px",
-        height: "400px",
-        width: "150px",
         left: "0px",
         position:"relative"
     }
@@ -93,13 +93,10 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
                         <MenuIcon image={ecg_icon} onClick={toggleEcg}/>
                     </td>
                 </tr>
-                <tr>
-                    <th>Opt 3</th>
-                </tr>
             </table>
 
             {(showHeartPopUp && player) && <HeartRatePopup player={player}/>}
-            {showEcgPopUp && <EcgPopup/>}
+            {showEcgPopUp && player && <EcgPopup player={player}/>}
 
         </div>
     )

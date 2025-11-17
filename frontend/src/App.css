@@ -38,6 +38,10 @@
   }
 }
 /* table styles */
+table {
+  border-collapse: collapse;
+}
+
 tr, td, th {
   border: 2px solid #000;
   background-color: white;
