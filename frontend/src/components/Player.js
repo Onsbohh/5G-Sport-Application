@@ -3,8 +3,9 @@ import {hover} from "@testing-library/user-event/dist/hover";
 
 // A simple component for each player shown on the player list.
 const Player = (props) => {
-    const isHovered = props.hoveredPlayer === props.id
-    const isSelected = props.selectedPlayer === props.id
+    const isHovered = props.hoveredPlayer === props.player
+    const isSelected = props.selectedPlayer === props.player
+    const isClicked = props.playerIsClicked === props.id
     return (
         <div style={{
             height: "100%",
@@ -12,7 +13,7 @@ const Player = (props) => {
         }}>
             <button
                 style={{
-                    backgroundColor: isSelected || isHovered ? "grey" : "white",
+                    backgroundColor: isClicked || isHovered ? "grey" : "white",
                     fontSize: "20px",
                     height: "100%",
                     width: "100%",

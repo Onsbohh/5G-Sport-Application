@@ -2,7 +2,7 @@ import React from "react";
 import Player from "./Player";
 
 // Lists the players.
-const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, onHover, onLeave, selectedPlayer, setSelectedPlayer, onPlayerSelect}) => {
+const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, onHover, onLeave, selectedPlayer, setSelectedPlayer, onPlayerSelect, playerIsClicked, setPlayerIsClicked}) => {
     console.log(players)
     const style = {
         marginTop: "50px",
@@ -27,9 +27,11 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
                         <Player
                             id={player.id}
                             name={player.name}
+                            playerisClicked={playerIsClicked}
                             onClick={() => {
                                 onPlayerClick(player)
-                                onPlayerSelect(player.id)
+                                onPlayerSelect(player)
+                                setPlayerIsClicked(player.id)
                             }}
                             hoveredPlayer={hoveredPlayer}
                             setHoveredPlayer={setHoveredPlayer}
