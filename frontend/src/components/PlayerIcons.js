@@ -12,7 +12,7 @@ const PlayerIcons = ({players, onPlayerClick, selectedPlayer, setSelectedPlayer,
                     left={player.left}
                     id={player.id}
                     hoveredPlayer={hoveredPlayer}
-                    setHovereredPlayer={setHoveredPlayer}
+                    setHoveredPlayer={setHoveredPlayer}
                     onHover={() => onHover(player.id)}
                     onLeave={onLeave}
                     selectedPlayer={selectedPlayer}

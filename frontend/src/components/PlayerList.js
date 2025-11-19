@@ -22,12 +22,13 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
                 </thead>
                 <tbody>
                 {players.map((player) => (
-                <tr key={player.id}>
+                <tr>
                     <td style={{height:"20px"}}>
                         <Player
+                            key={player.id}
                             id={player.id}
                             name={player.name}
-                            playerisClicked={playerIsClicked}
+                            playerIsClicked={playerIsClicked}
                             onClick={() => {
                                 onPlayerClick(player)
                                 onPlayerSelect(player)

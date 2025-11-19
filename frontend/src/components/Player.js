@@ -3,7 +3,7 @@ import {hover} from "@testing-library/user-event/dist/hover";
 
 // A simple component for each player shown on the player list.
 const Player = (props) => {
-    const isHovered = props.hoveredPlayer === props.player
+    const isHovered = props.hoveredPlayer === props.id
     const isSelected = props.selectedPlayer === props.player
     const isClicked = props.playerIsClicked === props.id
     return (
