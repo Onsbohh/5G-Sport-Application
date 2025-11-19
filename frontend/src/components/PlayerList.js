@@ -28,18 +28,18 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
                             key={player.id}
                             id={player.id}
                             name={player.name}
-                            playerIsClicked={playerIsClicked}
-                            onClick={() => {
-                                onPlayerClick(player)
-                                onPlayerSelect(player)
-                                setPlayerIsClicked(player.id)
-                            }}
                             hoveredPlayer={hoveredPlayer}
                             setHoveredPlayer={setHoveredPlayer}
                             onHover={() => onHover(player.id)}
                             onLeave={onLeave}
                             selectedPlayer={selectedPlayer}
                             setSelectedPlayer={setSelectedPlayer}
+                            playerIsClicked={playerIsClicked}
+                            onClick={() => {
+                                onPlayerClick(player);
+                                onPlayerSelect(player);
+                                setPlayerIsClicked(player.id);
+                            }}
                         />
                     </td>
                 </tr>
