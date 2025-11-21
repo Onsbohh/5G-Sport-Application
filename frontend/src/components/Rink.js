@@ -9,6 +9,10 @@ import {getHeartRateData} from "../service/sensorDataService"
 
 
 // The main component that connects the hockey rink, player icons, player list and the player menus.
+// TODO: Should fetch ECG data from the database.
+// TODO: Should fetch GNSS data from the database and use the location data to place the player
+//  icons in the rink.
+// TODO: Should fetch IMU data from the database to show player's acceleration etc.
 const Rink = () => {
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
