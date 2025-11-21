@@ -18,10 +18,6 @@ const HeartRatePopup = ({player}) => {
         <div style={style}>
             <b>Average:</b>
             {player.heart_rate} bpm <br/>
-            <b>Max:</b>
-            {player.heart_rate} bpm <br/>
-            <b>Current:</b>
-            {player.heart_rate} bpm
         </div>
     )
 }

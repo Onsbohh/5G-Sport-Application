@@ -21,16 +21,25 @@ const Rink = () => {
     const [heartRate, setHeartRate] = useState(null)
 
     // When a player's name or icon is clicked, show the menu for that player.
+    // TODO: Make it so that if a different player is selected, it opens the
+    // player menu of that player while also closing the player menu of the
+    // previously selected player. Currently if a player is selected and
+    // a new player is selected, the menu closes for the previous player, but
+    // doesn't open for the newly selected player.
     const toggleMenu = (player) => {
         setSelectedPlayer(player)
-        fetchHeartRate().then(response => setHeartRate(response))
+        fetchHeartRate(player.id).then(response => setHeartRate(response))
         setIsSelected(prev => !prev)
-        setShowMenu(prev => !prev)
+        if(!showMenu){
+            setShowMenu(true)
+        } else {
+            setShowMenu(false)
+        }
     }
 
-    const fetchHeartRate = async () => {
+    const fetchHeartRate = async (id) => {
         try{
-            const data = await getHeartRateData(1)
+            const data = await getHeartRateData(id)
             console.log('response data', data)
             console.log(data.Average_BPM)
             return data.Average_BPM
@@ -60,28 +69,28 @@ const Rink = () => {
         {
             id:2,
             name: "Bulju",
-            heart_rate: "50",
+            heart_rate: heartRate,
             top: "200px",
             left: "200px"
         },
         {
             id: 3,
             name: "Gretzky",
-            heart_rate: "50",
+            heart_rate: heartRate,
             top: "300px",
             left: "90px"
         },
         {
             id: 4,
             name: "Gretzky",
-            heart_rate: "50",
+            heart_rate: heartRate,
             top: "350px",
             left: "140px"
         },
         {
             id: 5,
             name: "Gretzky",
-            heart_rate: "50",
+            heart_rate: heartRate,
             top: "80px",
             left: "300px"
         }

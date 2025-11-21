@@ -22,10 +22,9 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
                 </thead>
                 <tbody>
                 {players.map((player) => (
-                <tr>
+                <tr key={player.id}>
                     <td style={{height:"20px"}}>
                         <Player
-                            key={player.id}
                             id={player.id}
                             name={player.name}
                             hoveredPlayer={hoveredPlayer}
