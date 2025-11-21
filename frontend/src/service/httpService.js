@@ -5,10 +5,5 @@ const http = axios.create({
     baseURL: process.env.REACT_APP_API_BASE_URL || "http://localhost:8080/api",
 });
 
-export default {
-  get: http.get,
-  post: http.post,
-  put: http.put,
-  delete: http.delete,
-};
+export default http
 

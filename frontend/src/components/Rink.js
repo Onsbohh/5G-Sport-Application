@@ -5,6 +5,7 @@ import PlayerList from "./PlayerList";
 import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
+import {getHeartRateData} from "../service/sensorDataService"
 
 
 // The main component that connects the hockey rink, player icons, player list and the player menus.
@@ -17,11 +18,25 @@ const Rink = () => {
     const [hoveredPlayer, setHoveredPlayer] = useState(null)
     const [playerIsClicked, setPlayerIsClicked] = useState(false)
 
+    const [heartRate, setHeartRate] = useState(null)
+
     // When a player's name or icon is clicked, show the menu for that player.
     const toggleMenu = (player) => {
         setSelectedPlayer(player)
+        fetchHeartRate().then(response => setHeartRate(response))
         setIsSelected(prev => !prev)
         setShowMenu(prev => !prev)
+    }
+
+    const fetchHeartRate = async () => {
+        try{
+            const data = await getHeartRateData(1)
+            console.log('response data', data)
+            console.log(data.Average_BPM)
+            return data.Average_BPM
+        } catch (err){
+            console.log(err)
+        }
     }
 
 
@@ -38,7 +53,7 @@ const Rink = () => {
         {
             id:1,
             name: "Teemu Selänne",
-            heart_rate: "50",
+            heart_rate: heartRate,
             top: "100px",
             left: "200px"
         },

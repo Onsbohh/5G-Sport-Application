@@ -60,6 +60,8 @@ export const getImuData = async (id) => {
     return response.data;
 }
 
+export default getHeartRateData
+
 
 
 
