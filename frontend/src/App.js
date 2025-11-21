@@ -1,5 +1,5 @@
 import './App.css';
-import Rink from "./components/Rink";
+import DashBoard from "./components/DashBoard";
 import Menu from "./components/Menu";
 import PlayerList from "./components/PlayerList";
 import HeartRatePopup from "./components/HeartRatePopup";
@@ -15,7 +15,7 @@ const App = () => {
               justifyContent: "center",
               alignItems: "center",
           }}>
-              <Rink/>
+              <DashBoard/>
           </div>
       </div>
   );

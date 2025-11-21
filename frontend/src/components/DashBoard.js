@@ -13,7 +13,7 @@ import {getHeartRateData} from "../service/sensorDataService"
 // TODO: Should fetch GNSS data from the database and use the location data to place the player
 //  icons in the rink.
 // TODO: Should fetch IMU data from the database to show player's acceleration etc.
-const Rink = () => {
+const DashBoard = () => {
     const [showMenu, setShowMenu] = useState(false)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
@@ -182,4 +182,4 @@ const Rink = () => {
     </div>
     )
 }
-export default Rink
+export default DashBoard
