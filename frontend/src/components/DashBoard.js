@@ -21,7 +21,6 @@ const DashBoard = () => {
     const [isSelected, setIsSelected] = useState(false)
     const [hoveredPlayer, setHoveredPlayer] = useState(null)
     const [playerIsClicked, setPlayerIsClicked] = useState(false)
-
     const [heartRate, setHeartRate] = useState(null)
 
     // When a player's name or icon is clicked, show the menu for that player.
@@ -34,11 +33,15 @@ const DashBoard = () => {
         setSelectedPlayer(player)
         fetchHeartRate(player.id).then(response => setHeartRate(response))
         setIsSelected(prev => !prev)
+        setShowMenu(prev => !prev)
+        /*
         if(!showMenu){
             setShowMenu(true)
         } else {
             setShowMenu(false)
         }
+
+         */
     }
 
     const fetchHeartRate = async (id) => {
