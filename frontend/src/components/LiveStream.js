@@ -1,16 +1,42 @@
+import ReactPlayer from "react-player"
+import {useState} from "react";
+import axios from "axios";
+import '../styles/LiveStream.css';
+
 export default function LiveStream() {
+    const [streaming, setStreaming] = useState(false);
+
+    const streamToggle = async () => {
+        if (!streaming) {
+            await axios.post("http://localhost:5000/start-stream");
+            setStreaming(true);
+        } else {
+            await axios.get("http://localhost:5000/stop-stream");
+            setStreaming(false);
+        }
+    }
+
     return (
         <div style={{width: "100%", maxWidth: "900px", margin: "0 auto"}}>
-            <iframe
-                src="http://localhost:8888/camstream"
-                allow="autoplay; fullscreen"
-                style={{
-                    width: "100%",
-                    height: "500px",
-                    border: "none",
-                    borderRadius: "8px",
-                }}
-            />
+            <div className={`stream-container ${!streaming ? "offline" : ""}`}>
+                {streaming ? (
+                    <iframe
+                        src="http://localhost:8889/camstream"
+                        allow="autoplay; fullscreen"
+                        style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+                    />
+                ) : (
+                    <div className="offline">
+                        <h2>Stream is Offline</h2>
+                    </div>
+                )}
+            </div>
+            <button
+                onClick={streamToggle}
+                className={`stream-btn ${streaming ? "stop" : "start"}`}
+            >
+                {streaming ? "Stop Stream" : "Start Stream"}
+            </button>
         </div>
     );
 }

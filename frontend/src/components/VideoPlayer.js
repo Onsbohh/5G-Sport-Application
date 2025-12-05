@@ -9,10 +9,13 @@ export default function VideoPlayer () {
                 controls={true}
                 width="600px"
                 height="450px"
-                config={{
-                    file: {
-                        attributes: {preload: "auto"}
-                    }
+
+                //Gives videos time when it changes
+                onTimeUpdate={(e) => {
+                    console.log("time update: ", e.target.currentTime);
+                }}
+                onPlaying={(e) => {
+                    console.log("playing: ", e);
                 }}
                 />
         </div>

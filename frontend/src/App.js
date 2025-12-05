@@ -3,6 +3,9 @@ import DashBoard from "./components/DashBoard";
 import Menu from "./components/Menu";
 import PlayerList from "./components/PlayerList";
 import HeartRatePopup from "./components/HeartRatePopup";
+import LiveStream from "./components/LiveStream";
+import VideoPlayer from "./components/VideoPlayer"
+
 
 const App = () => {
   return (
@@ -15,6 +18,7 @@ const App = () => {
               justifyContent: "center",
               alignItems: "center",
           }}>
+              <LiveStream/>
               <DashBoard/>
           </div>
       </div>
