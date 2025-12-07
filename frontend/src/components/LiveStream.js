@@ -17,7 +17,7 @@ export default function LiveStream() {
     }
 
     return (
-        <div style={{width: "100%", maxWidth: "900px", margin: "0 auto"}}>
+        <div style={{width: "100%", maxWidth: "1200px", margin: "0 auto"}}>
             <div className={`stream-container ${!streaming ? "offline" : ""}`}>
                 {streaming ? (
                     <iframe

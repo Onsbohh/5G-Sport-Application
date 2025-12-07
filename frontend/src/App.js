@@ -5,9 +5,12 @@ import PlayerList from "./components/PlayerList";
 import HeartRatePopup from "./components/HeartRatePopup";
 import LiveStream from "./components/LiveStream";
 import VideoPlayer from "./components/VideoPlayer"
+import {useState} from "react";
 
 
 const App = () => {
+  const [showStream, setShowStream] = useState(true);
+
   return (
       <div className="App">
           <header className="App-header">
@@ -18,7 +21,15 @@ const App = () => {
               justifyContent: "center",
               alignItems: "center",
           }}>
-              <LiveStream/>
+          <button
+                onClick={() => setShowStream(!showStream)}
+                className="toggle-btn"
+            >
+                {showStream ? "Show Recorded Video" : "Show Live Stream"}
+            </button>
+          </div>
+          <div className="content">
+              {showStream ? <LiveStream /> : <VideoPlayer />}
               <DashBoard/>
           </div>
       </div>
