@@ -5,7 +5,7 @@ import PlayerList from "./PlayerList";
 import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
-import {getHeartRateData} from "../service/sensorDataService"
+import {getEcgData, getHeartRateData} from "../service/sensorDataService"
 
 
 // The main component that connects the hockey rink, player icons, player list and the player menus.
@@ -22,6 +22,7 @@ const DashBoard = () => {
     const [hoveredPlayer, setHoveredPlayer] = useState(null)
     const [playerIsClicked, setPlayerIsClicked] = useState(false)
     const [heartRate, setHeartRate] = useState(null)
+    const [ecg, setEcg] = useState(null)
 
     // When a player's name or icon is clicked, show the menu for that player.
     // TODO: Make it so that if a different player is selected, it opens the
@@ -32,6 +33,7 @@ const DashBoard = () => {
     const toggleMenu = (player) => {
         setSelectedPlayer(player)
         fetchHeartRate(player.id).then(response => setHeartRate(response))
+        fetchEcg(player.id).then(response => setEcg(response))
         setIsSelected(prev => !prev)
         if(isSelected){
             setShowMenu(true)
@@ -57,6 +59,15 @@ const DashBoard = () => {
         }
     }
 
+    const fetchEcg = async (id) => {
+        try{
+            const data = await getEcgData(id)
+            return data.Samples
+        } catch(err){
+            console.log(err)
+        }
+    }
+
 
     useEffect(() => {
         if(selectedPlayer){
@@ -72,6 +83,7 @@ const DashBoard = () => {
             id:1,
             name: "Teemu Selänne",
             heart_rate: heartRate,
+            ecg: ecg,
             top: "100px",
             left: "200px"
         },
@@ -79,6 +91,7 @@ const DashBoard = () => {
             id:2,
             name: "Bulju",
             heart_rate: heartRate,
+            ecg: ecg,
             top: "200px",
             left: "200px"
         }

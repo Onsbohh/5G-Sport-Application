@@ -11,7 +11,7 @@ const EcgPopup = ({player}) => {
     }
     return (
         <div style={style}>
-            Show {player.name}'s Ecg graph here.
+            {player.ecg}
         </div>
     )
 }
