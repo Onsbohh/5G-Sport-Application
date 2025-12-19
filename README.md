@@ -6,21 +6,22 @@ Instructions to stream:
 
 Download:
   - MediaMTX https://github.com/bluenviron/mediamtx/releases
-  - FFmpeg https://www.ffmpeg.org/download.html
+  - FFmpeg https://www.gyan.dev/ffmpeg/builds/
+      - At the bottom download ffmpeg-release-essentials.7z
 
-Edit streamServer.js:
+Edit backend/server/streamServer.js:
   - Line 14 change to use ffmpeg.exe location
   - Line 16 "video=" change to use your webcam name. Can be found in windows settings.
 
 Edit Mediamtx.yml:
   - Inside of Mediamtx folder is mediamtx.yml
   - Add to bottom Path settings:
-      paths:
         camstream:
            record: yes
 
 Start: 
   - Run mediamtx.exe
+    -   This should open a console. 
   - Run  streamServer.js (node streamServer.js)
   - Run React Application (nmp start)
 
