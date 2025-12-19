@@ -8,10 +8,10 @@ export default function LiveStream() {
 
     const streamToggle = async () => {
         if (!streaming) {
-            await axios.post("http://localhost:5000/start-stream");
+            axios.post("http://localhost:5000/start-stream");
             setStreaming(true);
         } else {
-            await axios.get("http://localhost:5000/stop-stream");
+            axios.get("http://localhost:5000/stop-stream");
             setStreaming(false);
         }
     }
@@ -21,7 +21,7 @@ export default function LiveStream() {
             <div className={`stream-container ${!streaming ? "offline" : ""}`}>
                 {streaming ? (
                     <iframe
-                        src="http://localhost:8889/camstream"
+                        src={`http://localhost:8889/camstream?_=${Date.now()}`}
                         allow="autoplay; fullscreen"
                         style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
                     />

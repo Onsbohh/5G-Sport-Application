@@ -29,7 +29,7 @@ export default function VideoPlayer () {
                         console.log("playing: ", e);
                     }}
                 />
-                <button
+                <button className={"video-btn"}
                     onClick={() => videoRef.current.click()}
                     >
                     VOD
