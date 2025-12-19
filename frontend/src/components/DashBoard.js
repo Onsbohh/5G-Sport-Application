@@ -33,14 +33,16 @@ const DashBoard = () => {
         setSelectedPlayer(player)
         fetchHeartRate(player.id).then(response => setHeartRate(response))
         setIsSelected(prev => !prev)
-        setShowMenu(prev => !prev)
+        if(isSelected){
+            setShowMenu(true)
+        }
+        //setShowMenu(prev => !prev)
         /*
         if(!showMenu){
             setShowMenu(true)
         } else {
             setShowMenu(false)
         }
-
          */
     }
 
@@ -79,27 +81,6 @@ const DashBoard = () => {
             heart_rate: heartRate,
             top: "200px",
             left: "200px"
-        },
-        {
-            id: 3,
-            name: "Gretzky",
-            heart_rate: heartRate,
-            top: "300px",
-            left: "90px"
-        },
-        {
-            id: 4,
-            name: "Gretzky",
-            heart_rate: heartRate,
-            top: "350px",
-            left: "140px"
-        },
-        {
-            id: 5,
-            name: "Gretzky",
-            heart_rate: heartRate,
-            top: "80px",
-            left: "300px"
         }
     ]
 
