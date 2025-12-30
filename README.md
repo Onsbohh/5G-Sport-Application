@@ -10,14 +10,18 @@ Download:
       - At the bottom download ffmpeg-release-essentials.7z
 
 Edit backend/server/streamServer.js:
-  - Line 14 change to use ffmpeg.exe location
+  - Line 14 change to use ffmpeg.exe location.
   - Line 16 "video=" change to use your webcam name. Can be found in windows settings.
 
 Edit Mediamtx.yml:
   - Inside of Mediamtx folder is mediamtx.yml
-  - Add to bottom Path settings:
-        camstream:
-           record: yes
+  - Find recordPath:
+    -  Change path to ./recordings/%path/%s
+    -  Now file name format is unix timestamp in seconds. 
+  - Find at the bottom paths:
+    - Change to 
+          camstream:
+             record: yes
 
 Start: 
   - Run mediamtx.exe
