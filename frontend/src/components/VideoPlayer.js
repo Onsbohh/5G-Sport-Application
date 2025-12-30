@@ -4,11 +4,16 @@ import '../styles/VideoPlayer.css';
 
 export default function VideoPlayer () {
     const [videoURL, setVideoURL] = useState(null);
+    const [videoName, setVideoName] = useState(null);
     let videoRef = useRef(null);
+    let videoTimeStamp = useRef(null);
 
     const chooseVideo = (event) => {
         const file = event.target.files[0];
         if (!file) return;
+
+        const name = file.name;
+        setVideoName(name.replace(/\.[^/.]+$/, "")); // Remove file extension
 
         const url = URL.createObjectURL(file);
         setVideoURL(url);
@@ -23,7 +28,9 @@ export default function VideoPlayer () {
                     style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
                     //Gives videos time when it changes
                     onTimeUpdate={(e) => {
-                        console.log("time update: ", e.target.currentTime);
+                        console.log(videoName);
+                        videoTimeStamp = videoName + Math.round(e.target.currentTime);
+                        console.log("Video timestamp: ", videoTimeStamp);
                     }}
                     onPlaying={(e) => {
                         console.log("playing: ", e);
