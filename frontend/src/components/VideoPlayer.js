@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import ReactPlayer from "react-player"
 import '../styles/VideoPlayer.css';
-import {getHeartRateByTimestamp} from "../service/sensorDataService"
+import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
 
 export default function VideoPlayer () {
     const [videoURL, setVideoURL] = useState(null);
@@ -22,7 +22,7 @@ export default function VideoPlayer () {
 
     const fetchHeartRate = async (timestamp) => {
         try {
-            const data = await getHeartRateByTimestamp(timestamp);
+            const data = await getEcgByTimestamp(timestamp);
             console.log("Heart Rate Data: ", data);
         } catch (error) {
             console.error("Error fetching heart rate data: ", error);
@@ -41,7 +41,7 @@ export default function VideoPlayer () {
                     //Gives videos time when it changes
                     onTimeUpdate={(e) => {
                         console.log(videoName);
-                        videoTimeStamp = videoName + Math.round(e.target.currentTime);
+                        videoTimeStamp = (Number(videoName) + Math.round(e.target.currentTime));
                         console.log("Video timestamp: ", videoTimeStamp);
                         fetchHeartRate(videoTimeStamp);
                     }}
