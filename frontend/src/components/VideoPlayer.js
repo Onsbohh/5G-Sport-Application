@@ -2,12 +2,16 @@ import React, {useRef, useState} from "react";
 import ReactPlayer from "react-player"
 import '../styles/VideoPlayer.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
+import DataPanel from "./DataPanel";
 
 export default function VideoPlayer () {
     const [videoURL, setVideoURL] = useState(null);
     const [videoName, setVideoName] = useState(null);
     let videoRef = useRef(null);
     let videoTimeStamp = useRef(null);
+    const [heartRate, setHeartRate] = useState(null);
+    const [ecgData, setEcgData] = useState(null);
+
 
     const chooseVideo = (event) => {
         const file = event.target.files[0];
@@ -22,8 +26,14 @@ export default function VideoPlayer () {
 
     const fetchHeartRate = async (timestamp) => {
         try {
-            const data = await getEcgByTimestamp(timestamp);
-            console.log("Heart Rate Data: ", data);
+            const dataEcg = await getEcgByTimestamp(timestamp);
+            const dataHr = await getHeartRateByTimestamp(timestamp);
+            console.log("Ecg Data: ", dataEcg);
+
+            setEcgData(dataEcg);
+            setHeartRate(dataHr);
+
+            console.log("Heart Rate Data: ", dataHr);
         } catch (error) {
             console.error("Error fetching heart rate data: ", error);
         }
@@ -63,6 +73,19 @@ export default function VideoPlayer () {
                 />
 
             </div>
+            <DataPanel
+                title={"Sensor Data"}
+                sensors={{
+                    heart_rate: {
+                        label: "Heart Rate (BPM)",
+                        value: heartRate
+                    },
+                    ecg: {
+                        label: "ECG Data",
+                        value: ecgData
+                    }
+                }}
+            />
         </div>
     );
 };

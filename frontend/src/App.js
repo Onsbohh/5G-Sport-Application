@@ -13,9 +13,6 @@ const App = () => {
 
   return (
       <div className="App">
-          <header className="App-header">
-              <h1>5G Sport</h1>
-          </header>
           <div style={{
               display: "flex",
               justifyContent: "center",
@@ -25,13 +22,14 @@ const App = () => {
                 onClick={() => setShowStream(!showStream)}
                 className="toggle-btn"
             >
-                {showStream ? "Show Recorded Video" : "Show Live Stream"}
+                {showStream ? "Show Recorded Video" : "Show Livestream"}
             </button>
           </div>
           <div className="content">
               {showStream ? <LiveStream /> : <VideoPlayer />}
               <DashBoard/>
           </div>
+
       </div>
   );
 }
