@@ -30,8 +30,9 @@ export default function VideoPlayer () {
             const dataHr = await getHeartRateByTimestamp(timestamp);
             console.log("Ecg Data: ", dataEcg);
 
-            setEcgData(dataEcg);
-            setHeartRate(dataHr);
+            // Changed in the future
+            setEcgData(dataEcg[0]);
+            setHeartRate(dataHr[0]);
 
             console.log("Heart Rate Data: ", dataHr);
         } catch (error) {
@@ -42,7 +43,7 @@ export default function VideoPlayer () {
 
 
     return (
-        <div style={{width: "100%", maxWidth: "1200px", margin: "0 auto"}}>
+        <div style={{width: "100%", maxWidth: "1500px", display: "flex", margin: "auto"}}>
             <div className="video-container">
                 <ReactPlayer
                     src={videoURL}
@@ -75,13 +76,11 @@ export default function VideoPlayer () {
             </div>
             <DataPanel
                 title={"Sensor Data"}
-                sensors={{
+                sensorData={{
                     heart_rate: {
-                        label: "Heart Rate (BPM)",
                         value: heartRate
                     },
                     ecg: {
-                        label: "ECG Data",
                         value: ecgData
                     }
                 }}
