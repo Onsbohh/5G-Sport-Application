@@ -5,16 +5,19 @@ import React from "react";
 const HeartRatePopup = ({player}) => {
     const style = {
         height: "150px",
-        width: "150px",
         border: "2px solid #000",
         backgroundColor: "white",
         marginLeft: "15px",
         fontSize: "20px",
     }
     console.log('heart rate popup')
-    if(!player){
+    if(!player.heart_rate){
         console.log('no player is selected')
-        return null
+        return (
+            <div style={style}>
+                <p>Error fetching player data</p>
+            </div>
+        )
     }
     return (
         <div style={style}>
@@ -22,5 +25,6 @@ const HeartRatePopup = ({player}) => {
             {player.heart_rate} bpm <br/>
         </div>
     )
+
 }
 export default HeartRatePopup
