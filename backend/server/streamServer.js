@@ -18,9 +18,12 @@ app.post('/start-stream', (req, res) => {
 
   // Ffmpeg location argument needs to be changed based on where ffmpeg is located
   // Also the video input device name needs to be changed based on the system
-  ffmpegProcess = spawn('C:\\Users\\nuutt\\Downloads\\ffmpeg-2025-12-18-git-78c75d546a-essentials_build\\ffmpeg-2025-12-18-git-78c75d546a-essentials_build\\bin\\ffmpeg.exe', [
+  ffmpegProcess = spawn('C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe', [
     '-f', 'dshow',
-    '-i', 'video=Integrated Camera',
+    '-rtbufsize', '512M',
+    '-framerate', '30',
+    '-video_size', '1280x720',
+    '-i', 'video=Integrated Webcam',
     '-pix_fmt', 'yuv420p',
     '-preset', 'veryfast',
     '-tune', 'zerolatency',
