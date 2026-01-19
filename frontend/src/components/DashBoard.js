@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import hockey_rink from '../images/hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
 import PlayerList from "./PlayerList";
+import Calendar from "./Calendar"
 import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
@@ -14,7 +15,7 @@ import {getEcgData, getHeartRateData} from "../service/sensorDataService"
 //  icons in the rink.
 // TODO: Should fetch IMU data from the database to show player's acceleration etc.
 const DashBoard = () => {
-    const [showMenu, setShowMenu] = useState(false)
+    const [showMenu, setShowMenu] = useState(true)
     const [showHeartPopUp, setShowHeartPopUp] = useState(false)
     const [showEcgPopUp, setShowEcgPopUp] = useState(false)
     const [selectedPlayer, setSelectedPlayer] = useState(null)
@@ -35,9 +36,12 @@ const DashBoard = () => {
         fetchHeartRate(player.id).then(response => setHeartRate(response))
         fetchEcg(player.id).then(response => setEcg(response))
         setIsSelected(prev => !prev)
+        /*
         if(isSelected){
             setShowMenu(true)
         }
+
+         */
         //setShowMenu(prev => !prev)
         /*
         if(!showMenu){
@@ -104,7 +108,7 @@ const DashBoard = () => {
         }
     }))
 
-    const style = {
+    const rinkStyle = {
         width: "600px",
         height: "410px",
         border: "2px solid #000",
@@ -117,65 +121,66 @@ const DashBoard = () => {
             display: "flex",
             alignItems: "stretch"
         }}>
-        <div style={style} title={"rink container"}>
-            <img
-                src={hockey_rink}
-                alt={"hockey rink"}
-                style={{
-                    height:"100%",
-                    width:"100%",
-                    objectFit: "cover"
-            }}
-        />
-            <PlayerIcons
-                players={players}
-                selectedPlayer={selectedPlayer}
-                setSelectedPlayer={setSelectedPlayer}
-                onPlayerClick={toggleMenu}
-                hoveredPlayer={hoveredPlayer}
-                onHover={setHoveredPlayer}
-                onLeave={() => setHoveredPlayer(null)}
-                onPlayerSelect={setSelectedPlayer}
-                playerIsClicked={playerIsClicked}
-                setPlayerIsClicked={setPlayerIsClicked}
+            <Calendar/>
+            <div style={rinkStyle} title={"rink container"}>
+                <img
+                    src={hockey_rink}
+                    alt={"hockey rink"}
+                    style={{
+                        height:"100%",
+                        width:"100%",
+                        objectFit: "cover"
+                }}
             />
-        </div>
-            <PlayerList
-                players={players}
-                onPlayerClick={toggleMenu}
-                selectedPlayer={selectedPlayer}
-                setSelectedPlayer={setSelectedPlayer}
-                hoveredPlayer={hoveredPlayer}
-                onHover={setHoveredPlayer}
-                onLeave={() => setHoveredPlayer(null)}
-                onPlayerSelect={setSelectedPlayer}
-                playerIsClicked={playerIsClicked}
-                setPlayerIsClicked={setPlayerIsClicked}
-            />
-
-            {/*
-            <label>
-                <Select
-                    options={playerOptions}
-                    menuIsOpen={true}
-                    defaultValue={playerOptions[0]}
-                    placeholder={"Choose a player"}
-                    styles={{
-                        width: "70px"
-                    }}
+                <PlayerIcons
+                    players={players}
+                    selectedPlayer={selectedPlayer}
+                    setSelectedPlayer={setSelectedPlayer}
+                    onPlayerClick={toggleMenu}
+                    hoveredPlayer={hoveredPlayer}
+                    onHover={setHoveredPlayer}
+                    onLeave={() => setHoveredPlayer(null)}
+                    onPlayerSelect={setSelectedPlayer}
+                    playerIsClicked={playerIsClicked}
+                    setPlayerIsClicked={setPlayerIsClicked}
                 />
-            </label>
-            */}
+            </div>
+                <PlayerList
+                    players={players}
+                    onPlayerClick={toggleMenu}
+                    selectedPlayer={selectedPlayer}
+                    setSelectedPlayer={setSelectedPlayer}
+                    hoveredPlayer={hoveredPlayer}
+                    onHover={setHoveredPlayer}
+                    onLeave={() => setHoveredPlayer(null)}
+                    onPlayerSelect={setSelectedPlayer}
+                    playerIsClicked={playerIsClicked}
+                    setPlayerIsClicked={setPlayerIsClicked}
+                />
 
-            <Menu
-                player={selectedPlayer}
-                showMenu={showMenu}
-                setShowMenu={setShowMenu}
-                showEcgPopUp={showEcgPopUp}
-                setShowEcgPopUp={setShowEcgPopUp}
-                showHeartPopUp={showHeartPopUp}
-                setShowHeartPopUp={setShowHeartPopUp}
-            />
+                {/*
+                <label>
+                    <Select
+                        options={playerOptions}
+                        menuIsOpen={true}
+                        defaultValue={playerOptions[0]}
+                        placeholder={"Choose a player"}
+                        styles={{
+                            width: "70px"
+                        }}
+                    />
+                </label>
+                */}
+
+                <Menu
+                    player={selectedPlayer}
+                    showMenu={showMenu}
+                    setShowMenu={setShowMenu}
+                    showEcgPopUp={showEcgPopUp}
+                    setShowEcgPopUp={setShowEcgPopUp}
+                    showHeartPopUp={showHeartPopUp}
+                    setShowHeartPopUp={setShowHeartPopUp}
+                />
     </div>
     )
 }
