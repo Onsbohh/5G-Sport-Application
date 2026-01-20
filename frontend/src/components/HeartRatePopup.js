@@ -8,7 +8,7 @@ const HeartRatePopup = ({player}) => {
         border: "2px solid #000",
         backgroundColor: "white",
         marginLeft: "15px",
-        fontSize: "20px",
+        marginTop: "5px"
     }
     console.log('heart rate popup')
     if(!player.heart_rate){

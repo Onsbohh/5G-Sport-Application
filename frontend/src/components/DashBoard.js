@@ -93,7 +93,7 @@ const DashBoard = () => {
         },
         {
             id:2,
-            name: "Bulju",
+            name: "Jesse Puljujärvi",
             heart_rate: heartRate,
             ecg: ecg,
             top: "200px",

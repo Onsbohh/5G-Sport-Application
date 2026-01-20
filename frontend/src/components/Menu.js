@@ -19,7 +19,6 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
     const style = {
         display: "flex",
         alignItems: "stretch",
-        border: "1px solid #000",
         borderCollapse: "collapse",
         marginTop: "50px",
         marginLeft: "25px",

@@ -6,7 +6,8 @@ const EcgPopup = ({player}) => {
         height: "150px",
         border: "2px solid #000",
         backgroundColor: "white",
-        marginLeft: "15px"
+        marginLeft: "15px",
+        marginTop: "5px"
     }
     if(!player.ecg){
         return (
