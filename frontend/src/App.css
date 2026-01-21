@@ -50,8 +50,17 @@ thead {
   height: 20px;
 }
 
-/* button styles */
 button:hover {
     background-color: darkblue;
+}
+
+.toggle-btn {
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+
 }
 

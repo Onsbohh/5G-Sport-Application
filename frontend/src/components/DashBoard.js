@@ -114,7 +114,8 @@ const DashBoard = () => {
         border: "2px solid #000",
         marginTop: "50px",
         position: "relative",
-        backgroundColor: "white"
+        backgroundColor: "white",
+        marginLeft: "300px"
     }
     return (
         <div style={{

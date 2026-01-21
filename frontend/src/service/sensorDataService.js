@@ -1,5 +1,7 @@
 import httpService from "./httpService";
 
+console.log(httpService.defaults.baseURL);
+
 // ECG Data Services
 export const getAllEcgData = async () => {
     const response = await httpService.get("/ecg");
@@ -8,6 +10,11 @@ export const getAllEcgData = async () => {
 
 export const getEcgData = async (id) => {
     const response = await httpService.get(`/ecg/${id}`);
+    return response.data;
+}
+
+export const getEcgByTimestamp = async (timestamp) => {
+    const response = await httpService.get(`/ecg/timestamp?start=${timestamp}&end=${timestamp}`);
     return response.data;
 }
 
@@ -38,6 +45,11 @@ export const getGnssData = async (id) => {
     return response.data;
 }
 
+export const getGnssByTimestamp = async (timestamp) => {
+    const response = await httpService.get(`/gnss/timestamp?start=${timestamp}&end=${timestamp}`);
+    return response.data;
+}
+
 // HEARTRATE Data Services
 export const getAllHeartRateData = async () => {
     const response = await httpService.get("/heartrate");
@@ -46,6 +58,11 @@ export const getAllHeartRateData = async () => {
 
 export const getHeartRateData = async (id) => {
     const response = await httpService.get(`/heartrate/${id}`);
+    return response.data;
+}
+// Needs to be changed to use only one timestamp parameter
+export const getHeartRateByTimestamp = async (timestamp) => {
+    const response = await httpService.get(`/heartrate/timestamp?start=${timestamp}&end=${timestamp}`);
     return response.data;
 }
 
@@ -57,6 +74,11 @@ export const getAllImuData = async () => {
 
 export const getImuData = async (id) => {
     const response = await httpService.get(`/imu/${id}`);
+    return response.data;
+}
+
+export const getImuByTimestamp = async (timestamp) => {
+    const response = await httpService.get(`/imu/timestamp?start=${timestamp}&end=${timestamp}`);
     return response.data;
 }
 
