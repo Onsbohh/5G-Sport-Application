@@ -47,11 +47,11 @@ export default function DataPanel({ title, ecg, hr, timeStamp}) {
             )}
             {ecg.data ? (
                 <div>
-                    <LineChart width={400} height={200} data={ecgGraphData}>
+                    <LineChart width={550} height={200} data={ecgGraphData}>
                         <CartesianGrid stroke="#ccc"/>
                         <XAxis dataKey="Samples"/>
                         <YAxis/>
-                        <Line type="monotone" dataKey="ecg" stroke="#8884d8" dot={false} strokeWidth={2}/>
+                        <Line type="linear" dataKey="ecg" stroke="#8884d8" dot={false} strokeWidth={2}/>
                     </LineChart>
                 </div>
             ) : (
