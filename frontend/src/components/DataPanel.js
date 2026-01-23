@@ -5,7 +5,7 @@ import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 export default function DataPanel({ title, ecg, hr, timeStamp}) {
     let ecgData = []; let ecgGraphData = [];
     let hrData = [];
-    let minHr; let maxHr; let nowHr;
+    let minHr; let maxHr; let nowHr; let intervalHr;
 
     if (ecg.data && hr.data) {
         ecgData = ecg.data;
@@ -17,6 +17,7 @@ export default function DataPanel({ title, ecg, hr, timeStamp}) {
         for (let i = 0; i < hrData.length; i++) {
             if (hrData[i].Timestamp_UTC === timeStamp) {
                 nowHr = hrData[i].Average_BPM
+                intervalHr = hrData[i].rrData[0];
             }
         }
 
@@ -39,6 +40,7 @@ export default function DataPanel({ title, ecg, hr, timeStamp}) {
                     <p>Lowest HR: {minHr}</p>
                     <p>HR now: {nowHr}</p>
                     <p>Highest HR: {maxHr}</p>
+                    <p>R-R interval: {intervalHr}</p>
                 </div>
             ) : (
                 <p>No heart rate data available.</p>
