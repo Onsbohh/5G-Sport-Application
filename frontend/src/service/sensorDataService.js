@@ -13,8 +13,8 @@ export const getEcgData = async (id) => {
     return response.data;
 }
 
-export const getEcgByTimestamp = async (timestamp) => {
-    const response = await httpService.get(`/ecg/timestamp?start=${timestamp}&end=${timestamp}`);
+export const getEcgByTimestamp = async (start, end) => {
+    const response = await httpService.get(`/ecg/timestamp?start=${start}&end=${end}`);
     return response.data;
 }
 
@@ -61,8 +61,8 @@ export const getHeartRateData = async (id) => {
     return response.data;
 }
 // Needs to be changed to use only one timestamp parameter
-export const getHeartRateByTimestamp = async (timestamp) => {
-    const response = await httpService.get(`/heartrate/timestamp?start=${timestamp}&end=${timestamp}`);
+export const getHeartRateByTimestamp = async (start ,end) => {
+    const response = await httpService.get(`/heartrate/timestamp?start=${start}&end=${end}`);
     return response.data;
 }
 

@@ -8,7 +8,7 @@ export default function VideoPlayer () {
     const [videoURL, setVideoURL] = useState(null);
     const [videoName, setVideoName] = useState(null);
     let videoRef = useRef(null);
-    let videoTimeStamp = useRef(null);
+    const [videoTimeStamp, setVideoTimeStamp] = useState(null);
     const [heartRate, setHeartRate] = useState(null);
     const [ecgData, setEcgData] = useState(null);
 
@@ -24,15 +24,15 @@ export default function VideoPlayer () {
         setVideoURL(url);
     }
 
-    const fetchHeartRate = async (timestamp) => {
+    const fetchHeartRate = async (start, end) => {
         try {
-            const dataEcg = await getEcgByTimestamp(timestamp);
-            const dataHr = await getHeartRateByTimestamp(timestamp);
+            const dataEcg = await getEcgByTimestamp(start, end);
+            const dataHr = await getHeartRateByTimestamp(start, end);
             console.log("Ecg Data: ", dataEcg);
 
             // Changed in the future
-            setEcgData(dataEcg[0]);
-            setHeartRate(dataHr[0]);
+            setEcgData(dataEcg);
+            setHeartRate(dataHr);
 
             console.log("Heart Rate Data: ", dataHr);
         } catch (error) {
@@ -52,12 +52,13 @@ export default function VideoPlayer () {
                     //Gives videos time when it changes
                     onTimeUpdate={(e) => {
                         console.log(videoName);
-                        videoTimeStamp = (Number(videoName) + Math.round(e.target.currentTime));
+                        const ts = (Number(videoName) + Math.round(e.target.currentTime));
+                        setVideoTimeStamp(ts);
                         console.log("Video timestamp: ", videoTimeStamp);
-                        fetchHeartRate(videoTimeStamp);
                     }}
                     onPlaying={(e) => {
-                        console.log("playing: ", e);
+                        console.log("playing: ", e.target.duration);
+                        fetchHeartRate(videoName, (Number(videoName) + Math.round(e.target.duration)));
                     }}
                 />
                 <button className={"video-btn"}
@@ -76,14 +77,9 @@ export default function VideoPlayer () {
             </div>
             <DataPanel
                 title={"Sensor Data"}
-                sensorData={{
-                    heart_rate: {
-                        value: heartRate
-                    },
-                    ecg: {
-                        value: ecgData
-                    }
-                }}
+                hr={{data: heartRate}}
+                ecg={{data: ecgData}}
+                timeStamp={videoTimeStamp}
             />
         </div>
     );

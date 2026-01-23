@@ -2,36 +2,53 @@ import React, { useState } from "react";
 import stylesheet from '../styles/DataPanel.css';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-export default function DataPanel({ title, sensorData }) {
-    let ecgData = [];
-    console.log("Sensors in DataPanel: ", sensorData);
-    if (sensorData.heart_rate.value) {
-        console.log(sensorData.heart_rate.value.Average_BPM);
+export default function DataPanel({ title, ecg, hr, timeStamp}) {
+    let ecgData = []; let ecgGraphData = [];
+    let hrData = [];
+    let minHr; let maxHr; let nowHr;
+
+    if (ecg.data && hr.data) {
+        ecgData = ecg.data;
+        hrData = hr.data;
+
+        minHr= Math.min(...hrData.map(d => d.Average_BPM));
+        maxHr = Math.max(...hrData.map(d => d.Average_BPM));
+
+        for (let i = 0; i < hrData.length; i++) {
+            if (hrData[i].Timestamp_UTC === timeStamp) {
+                nowHr = hrData[i].Average_BPM
+            }
+        }
+
+        for (let i = 0; i < ecgData.length; i++) {
+            if (ecgData[i].Timestamp_UTC === timeStamp) {
+                ecgGraphData = ecgData[i].Samples.map((sample, index) => ({
+                    Samples: index,
+                    ecg: sample,
+                }));
+            }
+        }
     }
 
-    if (sensorData.ecg.value) {
-        ecgData = sensorData.ecg.value.Samples.map((sample, index) => ({
-            Samples: index,
-            ecg: sample,
-        }));
-    }
 
     return (
         <div className="DataPanel-container">
             <h3>{title}</h3>
-            {sensorData.heart_rate.value ? (
+            {hr.data ? (
                 <div>
-                    <p><strong>Heart Rate:</strong> {Math.round(sensorData.heart_rate.value.Average_BPM)} BPM</p>
+                    <p>Lowest HR: {minHr}</p>
+                    <p>HR now: {nowHr}</p>
+                    <p>Highest HR: {maxHr}</p>
                 </div>
             ) : (
                 <p>No heart rate data available.</p>
             )}
-            {sensorData.ecg.value ? (
+            {ecg.data ? (
                 <div>
-                    <LineChart width={400} height={200} data={ecgData}>
-                        <CartesianGrid stroke="#ccc" />
-                        <XAxis dataKey="Samples" />
-                        <YAxis />
+                    <LineChart width={400} height={200} data={ecgGraphData}>
+                        <CartesianGrid stroke="#ccc"/>
+                        <XAxis dataKey="Samples"/>
+                        <YAxis/>
                         <Line type="monotone" dataKey="ecg" stroke="#8884d8" dot={false} strokeWidth={2}/>
                     </LineChart>
                 </div>

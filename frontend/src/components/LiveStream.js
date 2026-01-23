@@ -8,6 +8,8 @@ export default function LiveStream() {
     const [streaming, setStreaming] = useState(false);
     const [heartRate, setHeartRate] = useState(null);
     const [ecgData, setEcgData] = useState(null);
+    const [videoTimeStamp, setVideoTimeStamp] = useState(null);
+
 
     const streamToggle = async () => {
         if (!streaming) {
@@ -23,15 +25,16 @@ export default function LiveStream() {
     const fetchSensorData = async () => {
         try {
             const timestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+            setVideoTimeStamp(timestamp);
             console.log("Fetching sensor data for timestamp: ", timestamp);
-            const heartRateData = await getHeartRateByTimestamp(timestamp);
-            const ecgData = await getEcgByTimestamp(timestamp);
+            const heartRateData = await getHeartRateByTimestamp(timestamp,timestamp);
+            const ecgData = await getEcgByTimestamp(timestamp,timestamp);
             if (heartRateData.length === 0 || ecgData.length === 0) {
                 console.log("No sensor data available for this timestamp.");
                 return;
             }
-            setHeartRate(heartRateData[0]);
-            setEcgData(ecgData[0]);
+            setHeartRate(heartRateData);
+            setEcgData(ecgData);
         }
         catch (error) {
             console.error("Error fetching sensor data: ", error);
@@ -64,14 +67,9 @@ export default function LiveStream() {
             </div>
             <DataPanel
                 title={"Sensor Data"}
-                sensorData={{
-                    heart_rate: {
-                        value: heartRate
-                    },
-                    ecg: {
-                        value: ecgData
-                    }
-                }}
+                hr={{data: heartRate}}
+                ecg={{data: ecgData}}
+                timeStamp={videoTimeStamp}
             />
         </div>
 
