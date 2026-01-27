@@ -5,11 +5,13 @@ import PlayerList from "./components/PlayerList";
 import HeartRatePopup from "./components/HeartRatePopup";
 import LiveStream from "./components/LiveStream";
 import VideoPlayer from "./components/VideoPlayer"
-import {useState} from "react";
+import React, {useState} from "react";
+import Calendar from "./components/Calendar";
 
 
 const App = () => {
   const [showStream, setShowStream] = useState(true);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
       <div className="App">
@@ -26,7 +28,8 @@ const App = () => {
             </button>
           </div>
           <div className="content">
-              {showStream ? <LiveStream /> : <VideoPlayer />}
+              {showStream ? <LiveStream /> : <VideoPlayer selectedDate={selectedDate} />}
+              <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate} />
               <DashBoard/>
           </div>
 

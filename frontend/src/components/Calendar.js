@@ -9,7 +9,7 @@ const dates = [
     new Date(2026, 0, 15)
 ]
 
-const Calendar = () => {
+const Calendar = ({selectedDate, onDateChange}) => {
     const [startDate, setStartDate] = useState(new Date());
     return (
         <div style={{
@@ -17,8 +17,8 @@ const Calendar = () => {
             marginRight: "25px"
         }}>
             <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                selected={selectedDate}
+                onChange={(date) => onDateChange(date)}
                 highlightDates={dates}
             />
         </div>

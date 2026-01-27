@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import hockey_rink from '../images/hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
 import PlayerList from "./PlayerList";
-import Calendar from "./Calendar"
 import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
@@ -122,7 +121,6 @@ const DashBoard = () => {
             display: "flex",
             alignItems: "stretch"
         }}>
-            <Calendar/>
             <div style={rinkStyle} title={"rink container"}>
                 <img
                     src={hockey_rink}

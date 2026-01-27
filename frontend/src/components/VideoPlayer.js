@@ -4,7 +4,7 @@ import '../styles/VideoPlayer.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
 import DataPanel from "./DataPanel";
 
-export default function VideoPlayer () {
+export default function VideoPlayer ({ selectedDate}) {
     const [videoURL, setVideoURL] = useState(null);
     const [videoName, setVideoName] = useState(null);
     let videoRef = useRef(null);
@@ -45,22 +45,26 @@ export default function VideoPlayer () {
     return (
         <div style={{width: "100%", maxWidth: "1500px", display: "flex", margin: "auto"}}>
             <div className="video-container">
-                <ReactPlayer
-                    src={videoURL}
-                    controls={true}
-                    style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
-                    //Gives videos time when it changes
-                    onTimeUpdate={(e) => {
-                        console.log(videoName);
-                        const ts = (Number(videoName) + Math.round(e.target.currentTime));
-                        setVideoTimeStamp(ts);
-                        console.log("Video timestamp: ", videoTimeStamp);
-                    }}
-                    onPlaying={(e) => {
-                        console.log("playing: ", e.target.duration);
-                        fetchHeartRate(videoName, (Number(videoName) + Math.round(e.target.duration)));
-                    }}
-                />
+                {videoURL ? (
+                    <ReactPlayer
+                        src={videoURL}
+                        controls={true}
+                        style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+                        //Gives videos time when it changes
+                        onTimeUpdate={(e) => {
+                            console.log(videoName);
+                            const ts = (Number(videoName) + Math.round(e.target.currentTime));
+                            setVideoTimeStamp(ts);
+                            console.log("Video timestamp: ", videoTimeStamp);
+                        }}
+                        onPlaying={(e) => {
+                            console.log("playing: ", e.target.duration);
+                            fetchHeartRate(videoName, (Number(videoName) + Math.round(e.target.duration)));
+                        }}
+                    />
+                ) : (
+                    <p>LOL</p>
+                )}
                 <button className={"video-btn"}
                     onClick={() => videoRef.current.click()}
                     >
