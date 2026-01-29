@@ -1,17 +1,17 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ReactPlayer from "react-player"
 import '../styles/VideoPlayer.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
 import DataPanel from "./DataPanel";
+import HistoryDataPanel from "./HistoryDataPanel";
 
-export default function VideoPlayer ({ selectedDate}) {
+export default function VideoPlayer ({ selectedDate }) {
     const [videoURL, setVideoURL] = useState(null);
     const [videoName, setVideoName] = useState(null);
     let videoRef = useRef(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
     const [heartRate, setHeartRate] = useState(null);
     const [ecgData, setEcgData] = useState(null);
-
 
     const chooseVideo = (event) => {
         const file = event.target.files[0];
@@ -40,8 +40,6 @@ export default function VideoPlayer ({ selectedDate}) {
         }
     }
 
-
-
     return (
         <div style={{width: "100%", maxWidth: "1500px", display: "flex", margin: "auto"}}>
             <div className="video-container">
@@ -63,7 +61,7 @@ export default function VideoPlayer ({ selectedDate}) {
                         }}
                     />
                 ) : (
-                    <p>LOL</p>
+                    <HistoryDataPanel date={selectedDate}/>
                 )}
                 <button className={"video-btn"}
                     onClick={() => videoRef.current.click()}
