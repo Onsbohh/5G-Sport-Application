@@ -10,7 +10,6 @@ const HeartRatePopup = ({player}) => {
         marginLeft: "15px",
         marginTop: "5px"
     }
-    console.log('heart rate popup')
     if(!player.heart_rate){
         console.log('no player is selected')
         return (

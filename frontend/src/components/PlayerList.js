@@ -3,7 +3,6 @@ import Player from "./Player";
 
 // Lists the players.
 const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, onHover, onLeave, selectedPlayer, setSelectedPlayer, onPlayerSelect, playerIsClicked, setPlayerIsClicked}) => {
-    console.log(players)
     const style = {
         marginTop: "50px",
         marginLeft: "25px",

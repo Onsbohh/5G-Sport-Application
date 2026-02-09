@@ -11,6 +11,7 @@ const PlayerIcons = ({players, onPlayerClick, selectedPlayer, setSelectedPlayer,
                     top={player.top}
                     left={player.left}
                     id={player.id}
+                    color={player.teamColor}
                     hoveredPlayer={hoveredPlayer}
                     setHoveredPlayer={setHoveredPlayer}
                     onHover={() => onHover(player.id)}

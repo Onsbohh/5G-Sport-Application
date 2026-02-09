@@ -10,9 +10,11 @@ export default function LiveStream() {
     const [ecgData, setEcgData] = useState(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
 
+    const [date, setDate] = useState(null)
 
     const streamToggle = async () => {
         if (!streaming) {
+            setDate(Date.now())
             axios.post("http://localhost:5000/start-stream");
             setStreaming(true);
         } else {
@@ -24,15 +26,26 @@ export default function LiveStream() {
     // Fetch sensor data every second when streaming on current timestamp
     const fetchSensorData = async () => {
         try {
-            const timestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+            // const timestamp = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+            let timestamp = 1609459721 // temporary for testing
             setVideoTimeStamp(timestamp);
             console.log("Fetching sensor data for timestamp: ", timestamp);
+            /*
             const heartRateData = await getHeartRateByTimestamp(timestamp,timestamp);
             const ecgData = await getEcgByTimestamp(timestamp,timestamp);
+
+             */
+
+            // placeholders to show data because data with video timestamps
+            // doesn't seem to exist
+            const heartRateData = await getHeartRateByTimestamp(1609462507,1770640728);
+            const ecgData = await getEcgByTimestamp(1609459721,1609459723);
+
             if (heartRateData.length === 0 || ecgData.length === 0) {
                 console.log("No sensor data available for this timestamp.");
                 return;
             }
+            console.log('ecgdata:', ecgData)
             setHeartRate(heartRateData);
             setEcgData(ecgData);
         }
@@ -54,7 +67,7 @@ export default function LiveStream() {
         <div style={{width: "100%", maxWidth: "1500px", margin: "auto", display: "flex"}}>
             <div className={`stream-container `}>
                 <iframe
-                    src={`http://localhost:8889/camstream?_=${Date.now()}`}
+                    src={`http://localhost:8889/camstream?_=${date}`}
                     allow="fullscreen"
                     style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
                 />

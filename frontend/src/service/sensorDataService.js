@@ -82,7 +82,6 @@ export const getImuByTimestamp = async (timestamp) => {
     return response.data;
 }
 
-export default getHeartRateData
 
 
 

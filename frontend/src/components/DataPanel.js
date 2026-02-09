@@ -22,13 +22,16 @@ export default function DataPanel({ title, ecg, hr, timeStamp}) {
         }
 
         for (let i = 0; i < ecgData.length; i++) {
-            if (ecgData[i].Timestamp_UTC === timeStamp) {
+            if (ecgData[i].Timestamp_UTC == timeStamp) {
                 ecgGraphData = ecgData[i].Samples.map((sample, index) => ({
                     Samples: index,
                     ecg: sample,
                 }));
             }
         }
+
+        console.log("ECG Graph Data", ecgGraphData);
+
     }
 
 
