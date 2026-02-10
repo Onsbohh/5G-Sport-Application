@@ -36,7 +36,7 @@ export const deleteEcgData = async (id) => {
 
 // GNSS Data Services
 export const getAllGnssData = async () => {
-    const response = await httpService.get("/gnss");
+    const response = await httpService.get("/gnss/");
     return response.data;
 }
 

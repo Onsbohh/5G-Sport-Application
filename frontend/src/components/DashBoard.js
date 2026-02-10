@@ -6,7 +6,7 @@ import Calendar from "./Calendar"
 import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
-import {getEcgData, getGnssData, getHeartRateData} from "../service/sensorDataService"
+import {getEcgData, getGnssData, getAllGnssData, getAllHeartRateData, getHeartRateData} from "../service/sensorDataService"
 
 
 
@@ -27,20 +27,19 @@ const DashBoard = () => {
     const [heartRate, setHeartRate] = useState(null)
     const [ecg, setEcg] = useState(null)
 
+    const [lat, setLat] = useState(11)
+    const [long, setLong] = useState(11)
 
+    const [player1Lat, setPlayer1Lat] = useState(10)
+    const [player1Long, setPlayer1Long] = useState(10)
+    /*
     const [lat, setLat] = useState(11)
     const [long, setLong] = useState(11)
     const maxLat = 570
     const maxLong = 370
     const minLat = 10
     const minLong = 10
-
-
-
-
     const [direction, setDirection] = useState(1)
-
-
     // Placeholder for simulating the players movement until actual gnss data
     // can be used.
     useEffect(() => {
@@ -66,9 +65,29 @@ const DashBoard = () => {
 
         return () => clearInterval(interval)
     }, [direction])
+     */
 
+    const setNewLat = async (gnss) => {
+        const newLat = await fetchGnss(gnss)
+        setPlayer1Lat(newLat)
+    }
 
+    const gnssDataInDb = async () => {
+        return await getAllHeartRateData()
+    }
 
+    const [counter, setCounter] = useState(0)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCounter(prevCounter => {
+                console.log('counter', prevCounter)
+                setCounter(prevCounter+1)
+                setNewLat(prevCounter)
+            })
+        },500)
+        return () => clearInterval(interval)
+    }, [counter]);
 
 
     // When a player's name or icon is clicked, show the menu for that player.
@@ -86,8 +105,8 @@ const DashBoard = () => {
         if(isSelected){
             setShowMenu(true)
         }
- 
- 
+
+
          */
         //setShowMenu(prev => !prev)
         /*
@@ -125,14 +144,14 @@ const DashBoard = () => {
     const fetchGnss = async (id) => {
         try{
             const data = await getGnssData(id)
-            const {Latitude, Longitude} = data
-            return data
+            console.log('latitude,,, ', data.Latitude)
+            return data.Latitude
         } catch (err){
             console.log(err)
         }
     }
 
-    
+
 
 
     // Placeholder example players
@@ -142,7 +161,7 @@ const DashBoard = () => {
             name: "Teemu Selänne",
             heart_rate: heartRate,
             ecg: ecg,
-            top: lat,
+            top: player1Lat,
             left: "200px",
             teamColor: "red"
         },
