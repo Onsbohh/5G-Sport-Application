@@ -18,24 +18,21 @@ const App = () => {
           <header className="App-header">
               <h1>5G Sport</h1>
           </header>
-          <div style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-          }}>
+          <div className="content">
               <button
                   onClick={() => setShowStream(!showStream)}
                   className="toggle-btn"
               >
                   {showStream ? "Show Recorded Video" : "Show Livestream"}
               </button>
-          </div>
-          <div className="content">
               {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
               <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
               <DashBoard/>
           </div>
 
+          <footer className="footer">
+              .
+          </footer>
       </div>
   );
 }

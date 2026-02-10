@@ -277,18 +277,22 @@ const DashBoard = () => {
 
     const rinkStyle = {
         width: "600px",
-        height: "410px",
         border: "2px solid #000",
-        marginTop: "50px",
         position: "relative",
         backgroundColor: "white"
     }
     return (
         <div style={{
             display: "flex",
-            alignItems: "stretch"
+            alignItems: "stretch",
+            justifyContent: "center"
         }}>
-            <Calendar/>
+            <div style={{
+                display: "flex",
+                maxHeight: "410px",
+                marginBottom: "50px"
+            }}>
+
             <div style={rinkStyle} title={"rink container"}>
                 <img
                     src={hockey_rink}
@@ -299,6 +303,7 @@ const DashBoard = () => {
                         objectFit: "cover"
                     }}
                 />
+
                 <PlayerIcons
                     players={players}
                     selectedPlayer={selectedPlayer}
@@ -324,6 +329,8 @@ const DashBoard = () => {
                 playerIsClicked={playerIsClicked}
                 setPlayerIsClicked={setPlayerIsClicked}
             />
+            </div>
+
 
 
             {/*

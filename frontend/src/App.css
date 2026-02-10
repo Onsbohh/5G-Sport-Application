@@ -64,3 +64,10 @@ button:hover {
 
 }
 
+.footer {
+  background-color: #282c34;
+}
+
+.content {
+  justify-content: center;
+}

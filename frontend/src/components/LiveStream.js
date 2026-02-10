@@ -64,27 +64,40 @@ export default function LiveStream() {
     }, [streaming]);
 
     return (
-        <div style={{width: "100%", maxWidth: "1500px", margin: "auto", display: "flex"}}>
-            <div className={`stream-container `}>
-                <iframe
-                    src={`http://localhost:8889/camstream?_=${date}`}
-                    allow="fullscreen"
-                    style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+        <>
+            <div style={
+                {
+                    width: "100%",
+                    maxWidth: "1500px",
+                    margin: "auto",
+                    display: "flex",
+                    height: "500px"
+                }}>
+                <div className={`stream-container `}>
+                    <iframe
+                        src={`http://localhost:8889/camstream?_=${date}`}
+                        allow="fullscreen"
+                        style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+                    />
+                </div>
+                <DataPanel
+                    title={"Sensor Data"}
+                    hr={{data: heartRate}}
+                    ecg={{data: ecgData}}
+                    timeStamp={videoTimeStamp}
                 />
-            <button
-                onClick={streamToggle}
-                className={`stream-btn ${streaming ? "stop" : "start"}`}
-            >
-                {streaming ? "Stop Stream" : "Start Stream"}
-            </button>
             </div>
-            <DataPanel
-                title={"Sensor Data"}
-                hr={{data: heartRate}}
-                ecg={{data: ecgData}}
-                timeStamp={videoTimeStamp}
-            />
-        </div>
+            <div style={{
+                justifyContent: "center"
+            }}>
+                <button
+                    onClick={streamToggle}
+                    className={`stream-btn ${streaming ? "stop" : "start"}`}
+                >
+                    {streaming ? "Stop Stream" : "Start Stream"}
+                </button>
+            </div>
+        </>
 
     );
 }

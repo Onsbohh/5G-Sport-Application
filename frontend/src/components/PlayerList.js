@@ -4,15 +4,17 @@ import Player from "./Player";
 // Lists the players.
 const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, onHover, onLeave, selectedPlayer, setSelectedPlayer, onPlayerSelect, playerIsClicked, setPlayerIsClicked}) => {
     const style = {
-        marginTop: "50px",
         marginLeft: "25px",
         width: "150px",
-        left: "0px",
-        position:"relative"
+        position:"relative",
+        overflowY: "hidden",
     }
 
     return (
-        <div style={{display: "flex"}}>
+        <div style={{
+            height: "410px",
+            overflowY: "auto"
+        }}>
             <table style={style}>
                 <thead>
                 <tr>
