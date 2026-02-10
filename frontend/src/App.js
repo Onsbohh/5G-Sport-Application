@@ -9,14 +9,27 @@ import React, {useState} from "react";
 import Calendar from "./components/Calendar";
 import language_icon from "./images/language_icon.svg"
 import darkmode_icon from "./images/darkmode_icon.svg"
-
+import menu_icon from "./images/menu_icon.svg"
+import InfoPage from "./components/InfoPage"
+import {Route, Routes, Navigate} from "react-router"
+import Navigation from "./components/Navigation"
 
 const App = () => {
+    /*
   const [showStream, setShowStream] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+     */
+
   return (
       <div className="App">
+          <Navigation/>
+          <Routes>
+              <Route path="/" element={<DashBoard/>}/>
+              <Route path="/InfoPage" element={<InfoPage/>}/>
+          </Routes>
+
+          {/*
           <header className="App-header">
               <h1>5G Sport</h1>
               <div className="Side-menu">
@@ -41,8 +54,24 @@ const App = () => {
                       />
                   </button>
               </div>
+              <div className="Left-side-menu">
+                  <button>
+                      <img
+                        src={menu_icon}
+                        alt="Menu-icon"
+                        style={{
+                            height: "25px",
+                            width: "25px"
+                        }}
+                      />
+                  </button>
+              </div>
           </header>
+          */}
+
+          {/*
           <div className="content">
+
               <button
                   onClick={() => setShowStream(!showStream)}
                   className="toggle-btn"
@@ -51,9 +80,10 @@ const App = () => {
               </button>
               {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
               <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
-              <DashBoard/>
-          </div>
+                            <DashBoard/>
 
+          </div>
+                        */}
           <footer className="footer">
               .
           </footer>

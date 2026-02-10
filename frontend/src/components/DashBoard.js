@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from "react";
+import "../App.css"
+import LiveStream from "./LiveStream"
+import VideoPlayer from "./VideoPlayer"
 import hockey_rink from '../images/hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
 import PlayerList from "./PlayerList";
@@ -26,6 +29,9 @@ const DashBoard = () => {
     const [playerIsClicked, setPlayerIsClicked] = useState(false)
     const [heartRate, setHeartRate] = useState(null)
     const [ecg, setEcg] = useState(null)
+
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [showStream, setShowStream] = useState(true);
 
     const [lat, setLat] = useState(11)
     const [long, setLong] = useState(11)
@@ -81,7 +87,6 @@ const DashBoard = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCounter(prevCounter => {
-                console.log('counter', prevCounter)
                 setCounter(prevCounter+1)
                 setNewLat(prevCounter)
             })
@@ -282,58 +287,68 @@ const DashBoard = () => {
         backgroundColor: "white"
     }
     return (
-        <div style={{
-            display: "flex",
-            alignItems: "stretch",
-            justifyContent: "center"
-        }}>
+        <div className="main-wrapper">
+            <div className="content">
+                <button
+                    onClick={() => setShowStream(!showStream)}
+                    className="toggle-btn"
+                >
+                    {showStream ? "Show Recorded Video" : "Show Livestream"}
+                </button>
+                {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
+                <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
+            </div>
             <div style={{
                 display: "flex",
-                maxHeight: "410px",
-                marginBottom: "50px"
+                justifyContent: "center"
             }}>
+                <div style={{
+                    display: "flex",
+                    maxHeight: "410px",
+                    marginBottom: "50px",
+                    justifyContent: "center"
+                }}>
+                    <div style={rinkStyle} title={"rink container"}>
+                        <img
+                            src={hockey_rink}
+                            alt={"hockey rink"}
+                            style={{
+                                height: "100%",
+                                width: "100%",
+                                objectFit: "cover"
+                            }}
+                        />
 
-            <div style={rinkStyle} title={"rink container"}>
-                <img
-                    src={hockey_rink}
-                    alt={"hockey rink"}
-                    style={{
-                        height:"100%",
-                        width:"100%",
-                        objectFit: "cover"
-                    }}
-                />
-
-                <PlayerIcons
-                    players={players}
-                    selectedPlayer={selectedPlayer}
-                    setSelectedPlayer={setSelectedPlayer}
-                    onPlayerClick={toggleMenu}
-                    hoveredPlayer={hoveredPlayer}
-                    onHover={setHoveredPlayer}
-                    onLeave={() => setHoveredPlayer(null)}
-                    onPlayerSelect={setSelectedPlayer}
-                    playerIsClicked={playerIsClicked}
-                    setPlayerIsClicked={setPlayerIsClicked}
-                />
+                        <PlayerIcons
+                            players={players}
+                            selectedPlayer={selectedPlayer}
+                            setSelectedPlayer={setSelectedPlayer}
+                            onPlayerClick={toggleMenu}
+                            hoveredPlayer={hoveredPlayer}
+                            onHover={setHoveredPlayer}
+                            onLeave={() => setHoveredPlayer(null)}
+                            onPlayerSelect={setSelectedPlayer}
+                            playerIsClicked={playerIsClicked}
+                            setPlayerIsClicked={setPlayerIsClicked}
+                        />
+                    </div>
+                    <PlayerList
+                        players={players}
+                        onPlayerClick={toggleMenu}
+                        selectedPlayer={selectedPlayer}
+                        setSelectedPlayer={setSelectedPlayer}
+                        hoveredPlayer={hoveredPlayer}
+                        onHover={setHoveredPlayer}
+                        onLeave={() => setHoveredPlayer(null)}
+                        onPlayerSelect={setSelectedPlayer}
+                        playerIsClicked={playerIsClicked}
+                        setPlayerIsClicked={setPlayerIsClicked}
+                    />
+                </div>
             </div>
-            <PlayerList
-                players={players}
-                onPlayerClick={toggleMenu}
-                selectedPlayer={selectedPlayer}
-                setSelectedPlayer={setSelectedPlayer}
-                hoveredPlayer={hoveredPlayer}
-                onHover={setHoveredPlayer}
-                onLeave={() => setHoveredPlayer(null)}
-                onPlayerSelect={setSelectedPlayer}
-                playerIsClicked={playerIsClicked}
-                setPlayerIsClicked={setPlayerIsClicked}
-            />
-            </div>
 
 
-
-            {/*
+                {/*
                <label>
                    <Select
                        options={playerOptions}
@@ -347,17 +362,17 @@ const DashBoard = () => {
                </label>
                */}
 
-
-            <Menu
-                player={selectedPlayer}
-                showMenu={showMenu}
-                setShowMenu={setShowMenu}
-                showEcgPopUp={showEcgPopUp}
-                setShowEcgPopUp={setShowEcgPopUp}
-                showHeartPopUp={showHeartPopUp}
-                setShowHeartPopUp={setShowHeartPopUp}
-            />
+                <Menu
+                    player={selectedPlayer}
+                    showMenu={showMenu}
+                    setShowMenu={setShowMenu}
+                    showEcgPopUp={showEcgPopUp}
+                    setShowEcgPopUp={setShowEcgPopUp}
+                    showHeartPopUp={showHeartPopUp}
+                    setShowHeartPopUp={setShowHeartPopUp}
+                />
         </div>
+
     )
 }
 export default DashBoard

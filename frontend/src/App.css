@@ -2,6 +2,8 @@
   min-height: 100vh;
   text-align: center;
   background-color: ghostwhite;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -69,10 +71,25 @@ button:hover {
 }
 
 .content {
+  display: flex;
   justify-content: center;
+  flex-direction: column;
+  width: 100%;
 }
 
 .Side-menu {
   position: absolute;
   right: 10px;
+}
+
+.Left-side-menu {
+  position: absolute;
+  left: 10px
+}
+
+.main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
 }
