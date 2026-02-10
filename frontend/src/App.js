@@ -7,6 +7,8 @@ import LiveStream from "./components/LiveStream";
 import VideoPlayer from "./components/VideoPlayer"
 import React, {useState} from "react";
 import Calendar from "./components/Calendar";
+import language_icon from "./images/language_icon.svg"
+import darkmode_icon from "./images/darkmode_icon.svg"
 
 
 const App = () => {
@@ -17,6 +19,28 @@ const App = () => {
       <div className="App">
           <header className="App-header">
               <h1>5G Sport</h1>
+              <div className="Side-menu">
+                  <button className="Language-button">
+                      <img
+                          src={language_icon}
+                          alt="Language icon"
+                          style={{
+                              height: "25px",
+                              width: "25px"
+                          }}
+                      />
+                  </button>
+                  <button className="Darkmode_button">
+                      <img
+                        src={darkmode_icon}
+                        alt="Darkmode icon"
+                        style={{
+                            height: "25px",
+                            width: "25px"
+                        }}
+                      />
+                  </button>
+              </div>
           </header>
           <div className="content">
               <button
