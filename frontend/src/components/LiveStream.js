@@ -6,6 +6,7 @@ import DataPanel from "./DataPanel";
 
 export default function LiveStream() {
     const [streaming, setStreaming] = useState(false);
+    const [streamFail, setStreamFail] = useState(false)
     const [heartRate, setHeartRate] = useState(null);
     const [ecgData, setEcgData] = useState(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
@@ -14,14 +15,26 @@ export default function LiveStream() {
 
     const streamToggle = async () => {
         if (!streaming) {
-            setDate(Date.now())
-            axios.post("http://localhost:5000/start-stream");
-            setStreaming(true);
+            try{
+                setDate(Date.now())
+                await axios.post("http://localhost:5000/start-stream");
+                setStreaming(true);
+                setStreamFail(false)
+            } catch (error){
+                setStreamFail(true)
+                console.log('error playing stream')
+                console.log(error)
+            }
         } else {
-            axios.get("http://localhost:5000/stop-stream");
-            setStreaming(false);
+            try{
+                axios.get("http://localhost:5000/stop-stream");
+                setStreaming(false);
+            } catch (error){
+                console.log(error)
+            }
         }
     }
+
 
     // Fetch sensor data every second when streaming on current timestamp
     const fetchSensorData = async () => {
@@ -74,11 +87,22 @@ export default function LiveStream() {
                     height: "500px"
                 }}>
                 <div className={`stream-container `}>
+                    {!streamFail ? <iframe
+                        src={`http://localhost:8889/camstream?_=${date}`}
+                        allow="fullscreen"
+                        style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+                    /> :
+                    <p>Error playing stream. Please check the info tab for instructions
+                    on setting up the stream.</p>
+                    }
+
+                    {/*
                     <iframe
                         src={`http://localhost:8889/camstream?_=${date}`}
                         allow="fullscreen"
                         style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
                     />
+                    */}
                 </div>
                 <DataPanel
                     title={"Sensor Data"}
