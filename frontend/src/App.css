@@ -190,3 +190,8 @@ button:hover {
 }
 
 
+.player-info-popup {
+  width: 170px;
+  height: 170px;
+  background-color: lightgray;
+}

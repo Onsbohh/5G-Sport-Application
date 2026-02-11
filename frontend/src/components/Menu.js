@@ -5,6 +5,7 @@ import ecg_icon from "../images/ecg_icon.svg"
 import HeartRatePopup from "./HeartRatePopup";
 import EcgPopup from "./EcgPopUp";
 import menu_icon from "../images/menu_icon.svg"
+import player_image from "../images/player_image.svg"
 
 // A popup menu, where the user can select information to show from their currently selected player.
 const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp, setShowEcgPopUp}) => {
@@ -29,7 +30,16 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
         return null
     }
     return (
-        <div>
+        <div className="player-info-popup">
+            <h2>{player.name}</h2>
+            <img
+                src={player_image}
+                alt="Player image"
+                style={{
+                    height: "50px",
+                    width: "50px"
+                }}
+            />
             {/*
             <button onClick={toggleMenu}>
                 <img
@@ -42,19 +52,20 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
                 />
             </button>
             */}
-            <table style={style} title={"menu_table"}>
-                <tr>
-                    <td>
-                        <MenuIcon image={heart_icon} onClick={toggleHeart}/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <MenuIcon image={ecg_icon} onClick={toggleEcg}/>
-                    </td>
-                </tr>
-            </table>
-
+            <div className="menu-table-wrapper">
+                <table style={style} title={"menu_table"}>
+                    <tr>
+                        <td>
+                            <MenuIcon image={heart_icon} onClick={toggleHeart}/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <MenuIcon image={ecg_icon} onClick={toggleEcg}/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             {(showHeartPopUp && player) && <HeartRatePopup player={player}/>}
             {showEcgPopUp && player && <EcgPopup player={player}/>}
 

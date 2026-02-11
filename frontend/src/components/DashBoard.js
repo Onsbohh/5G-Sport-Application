@@ -350,6 +350,15 @@ const DashBoard = () => {
                         playerIsClicked={playerIsClicked}
                         setPlayerIsClicked={setPlayerIsClicked}
                     />
+                    <Menu
+                        player={selectedPlayer}
+                        showMenu={showMenu}
+                        setShowMenu={setShowMenu}
+                        showEcgPopUp={showEcgPopUp}
+                        setShowEcgPopUp={setShowEcgPopUp}
+                        showHeartPopUp={showHeartPopUp}
+                        setShowHeartPopUp={setShowHeartPopUp}
+                    />
                 </div>
             </div>
 
@@ -368,15 +377,7 @@ const DashBoard = () => {
                </label>
                */}
 
-                <Menu
-                    player={selectedPlayer}
-                    showMenu={showMenu}
-                    setShowMenu={setShowMenu}
-                    showEcgPopUp={showEcgPopUp}
-                    setShowEcgPopUp={setShowEcgPopUp}
-                    showHeartPopUp={showHeartPopUp}
-                    setShowHeartPopUp={setShowHeartPopUp}
-                />
+
         </div>
 
     )
