@@ -1,5 +1,6 @@
 import React from "react";
 import Player from "./Player";
+import "../App.css"
 
 // Lists the players.
 const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, onHover, onLeave, selectedPlayer, setSelectedPlayer, onPlayerSelect, playerIsClicked, setPlayerIsClicked}) => {
@@ -8,6 +9,7 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
         width: "150px",
         position:"relative",
         overflowY: "hidden",
+        backgroundColor: "#282c34"
     }
 
     return (

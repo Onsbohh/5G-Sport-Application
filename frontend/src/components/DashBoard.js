@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "../App.css"
 import LiveStream from "./LiveStream"
 import VideoPlayer from "./VideoPlayer"
+import Introduction from "./Introduction"
 import hockey_rink from '../images/hockey_rink.svg'
 import PlayerIcon from "./PlayerIcon";
 import PlayerList from "./PlayerList";
@@ -10,8 +11,6 @@ import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
 import {getEcgData, getGnssData, getAllGnssData, getAllHeartRateData, getHeartRateData} from "../service/sensorDataService"
-
-
 
 
 // The main component that connects the hockey rink, player icons, player list and the player menus.
@@ -289,14 +288,20 @@ const DashBoard = () => {
     return (
         <div className="main-wrapper">
             <div className="content">
-                <button
-                    onClick={() => setShowStream(!showStream)}
-                    className="toggle-btn"
-                >
-                    {showStream ? "Show Recorded Video" : "Show Livestream"}
-                </button>
-                {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
+                <Introduction/>
                 <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
+                <div style={{
+                    display: "flex",
+                    justifyContent: "center"
+                }}>
+                    <button
+                        onClick={() => setShowStream(!showStream)}
+                        className="toggle-btn"
+                    >
+                        {showStream ? "Show Recorded Video" : "Show Livestream"}
+                    </button>
+                </div>
+                {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
             </div>
             <div style={{
                 display: "flex",
@@ -306,6 +311,7 @@ const DashBoard = () => {
                     display: "flex",
                     maxHeight: "410px",
                     marginBottom: "50px",
+                    marginTop: "30px",
                     justifyContent: "center"
                 }}>
                     <div style={rinkStyle} title={"rink container"}>

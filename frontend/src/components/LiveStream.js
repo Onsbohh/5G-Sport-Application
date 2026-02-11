@@ -22,12 +22,13 @@ export default function LiveStream() {
                 setStreamFail(false)
             } catch (error){
                 setStreamFail(true)
+                setStreaming(false)
                 console.log('error playing stream')
                 console.log(error)
             }
         } else {
             try{
-                axios.get("http://localhost:5000/stop-stream");
+                await axios.get("http://localhost:5000/stop-stream");
                 setStreaming(false);
             } catch (error){
                 console.log(error)

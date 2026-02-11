@@ -11,9 +11,9 @@ const Player = (props) => {
             height: "100%",
             width: "100%"
         }}>
-            <button
+            <button id="player-button"
                 style={{
-                    backgroundColor: isClicked || isHovered ? "grey" : "white",
+                    backgroundColor: isClicked || isHovered ? "lightblue" : "ghostwhite",
                     fontSize: "20px",
                     height: "100%",
                     width: "100%",
