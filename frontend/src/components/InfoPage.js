@@ -5,35 +5,49 @@ const InfoPage = () => {
     let location = useLocation();
     const { state } = location;
     return (
-        <div>
+        <div className="Infopage-content">
             <h1>Information for Users</h1>
-            <a>
-                Instructions to stream:
+                <h1>Instructions to stream:</h1>
 
-                Download:
+                <h2>Download:</h2>
 
-                MediaMTX https://github.com/bluenviron/mediamtx/releases
-                FFmpeg https://www.gyan.dev/ffmpeg/builds/
-                At the bottom download ffmpeg-release-essentials.7z
-                Edit backend/server/streamServer.js:
-
-                Line 14 change to use ffmpeg.exe location.
-                Line 16 "video=" change to use your webcam name. Can be found in windows settings.
-                Edit Mediamtx.yml:
-
-                Inside of Mediamtx folder is mediamtx.yml
-                Find recordPath:
-                Change path to ./recordings/%path/%s
+            <p>
+                <a href="https://github.com/bluenviron/mediamtx/releases" target="_blank">MediaMTX</a>
+                <br/>
+                <a href="https://www.gyan.dev/ffmpeg/builds/" target="_blank">FFmpeg</a>
+                <br/>
+                1. At the bottom download ffmpeg-release-essentials.7z
+                <br/>
+                => Edit backend/server/streamServer.js:
+                <br/>
+                => Line 14 change to use ffmpeg.exe location.
+                <br/>
+                => Line 16 "video=" change to use your webcam name. Can be found in windows settings.
+                <br/>
+                2. Edit Mediamtx.yml:
+                <br/>
+                Inside of Mediamtx folder is mediamtx.yml:
+                <br/>
+                    =>Find recordPath:
+                <br/>
+                        =>Change path to ./recordings/%path/%s
+                <br/>
                 Now file name format is unix timestamp in seconds.
+                <br/>
                 Find at the bottom paths:
+                <br/>
                 Change to camstream: record: yes
+                <br/>
                 Start:
-
+                <br/>
                 Run mediamtx.exe
-                This should open a console.
-                Run streamServer.js (node streamServer.js)
-                Run React Application (nmp start)
-            </a>
+                <br/>
+                    => This should open a console.
+                <br/>
+                        => Run streamServer.js (node streamServer.js)
+                <br/>
+                        => Run React Application (nmp start)
+            </p>
         </div>
     )
 }

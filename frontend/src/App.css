@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 .App {
   min-height: 100vh;
   text-align: center;
@@ -17,7 +19,11 @@
   }
 }
 
-.App-header {
+.nav-header {
+  font-family: 'Orbitron', 'sans-serif';
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   background-color: #282c34;
   display: flex;
   flex-direction: column;
@@ -25,10 +31,13 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  text-decoration-color: white;
+  text-decoration: none;
+  height: 80px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -53,7 +62,7 @@ thead {
 }
 
 button:hover {
-    background-color: darkblue;
+    background-color: lightblue;
 }
 
 .toggle-btn {
@@ -67,7 +76,12 @@ button:hover {
 }
 
 .footer {
+  position: fixed;
+  place-items: center;
+  width: 100%;
+  gap: 2rem;
   background-color: #282c34;
+  bottom: 0;
 }
 
 .content {
@@ -92,4 +106,68 @@ button:hover {
   display: flex;
   position: relative;
   flex-direction: column;
+}
+
+.hideOnMobile {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.navLink {
+  color: white;
+}
+
+.h1 {
+  color: white;
+}
+
+.title {
+  color: white;
+  text-decoration: none;
+}
+.ul, .nav-links {
+  list-style-type: none;
+  padding-inline-start: 5px;
+  display: grid;
+}
+.main-nav ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 5px;
+  padding: 30px;
+  width: 30px;
+  background-color: #282c34;
+}
+/*
+#nav-links {
+  display: grid;
+  list-style-type: none;
+  position: relative;
+  left: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #282c34;
+  width: 50px;
+  height: 50px;
+}
+
+ */
+.nav-link, .nav-link:active, nav-link:visited {
+  background-color: #282c34;
+  color: white;
+  left: 5px;
+  margin-left: 0;
+  margin-top: 10px;
+  text-align: center;
+  line-height: 1.5;
+  text-decoration: none;
 }
