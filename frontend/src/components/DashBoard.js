@@ -77,6 +77,9 @@ const DashBoard = () => {
         setPlayer1Lat(newLat)
     }
 
+    const setNewLong = async (gnss) => {
+        const newLong = await fetchLong(gnss)
+    }
     const gnssDataInDb = async () => {
         return await getAllHeartRateData()
     }
@@ -87,7 +90,9 @@ const DashBoard = () => {
         const interval = setInterval(() => {
             setCounter(prevCounter => {
                 setCounter(prevCounter+1)
+                console.log(prevCounter, 'counter')
                 setNewLat(prevCounter)
+                setNewLong(prevCounter)
             })
         },500)
         return () => clearInterval(interval)
@@ -105,6 +110,7 @@ const DashBoard = () => {
         fetchHeartRate(player.id).then(response => setHeartRate(response))
         fetchEcg(player.id).then(response => setEcg(response))
         setIsSelected(prev => !prev)
+        setShowMenu(prev => !prev)
         /*
         if(isSelected){
             setShowMenu(true)
@@ -155,6 +161,15 @@ const DashBoard = () => {
         }
     }
 
+    const fetchLong = async (id) => {
+        try{
+            const data = await getGnssData(id)
+            console.log('long', data.Longitude)
+            return data.Longitude
+        } catch (error){
+            console.log(error)
+        }
+    }
 
 
 
@@ -289,19 +304,23 @@ const DashBoard = () => {
         <div className="main-wrapper">
             <div className="content">
                 <Introduction/>
-                <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
                 <div style={{
                     display: "flex",
-                    justifyContent: "center"
+                    justifyContent: "center",
+                    alignItems: "center"
                 }}>
-                    <button
-                        onClick={() => setShowStream(!showStream)}
-                        className="toggle-btn"
-                    >
-                        {showStream ? "Show Recorded Video" : "Show Livestream"}
-                    </button>
+                    <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
                 </div>
+
+                <div>
                 {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
+                <button
+                    onClick={() => setShowStream(!showStream)}
+                    className="toggle-btn"
+                >
+                    {showStream ? "Show Recorded Video" : "Show Livestream"}
+                </button>
+                </div>
             </div>
             <div style={{
                 display: "flex",

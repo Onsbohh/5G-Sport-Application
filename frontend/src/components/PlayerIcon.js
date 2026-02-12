@@ -12,6 +12,7 @@ const PlayerIcon = (props) => {
         height: "30px",
         borderRadius: "50%",
         backgroundColor: isClicked || isHovered ? "grey" : props.color,
+        color: "ghostwhite",
         position: "absolute",
         top: props.top,
         left: props.left

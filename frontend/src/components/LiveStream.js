@@ -13,20 +13,23 @@ export default function LiveStream() {
 
     const [date, setDate] = useState(null)
 
+    /*
     const streamToggle = async () => {
         if (!streaming) {
+            console.log('ei striima')
             try{
                 setDate(Date.now())
                 await axios.post("http://localhost:5000/start-stream");
                 setStreaming(true);
-                setStreamFail(false)
+                //setStreamFail(false)
             } catch (error){
-                setStreamFail(true)
+                //setStreamFail(true)
                 setStreaming(false)
                 console.log('error playing stream')
                 console.log(error)
             }
         } else {
+            console.log('striimaa')
             try{
                 await axios.get("http://localhost:5000/stop-stream");
                 setStreaming(false);
@@ -36,6 +39,17 @@ export default function LiveStream() {
         }
     }
 
+     */
+
+    const streamToggle = async () => {
+        if (!streaming) {
+            axios.post("http://localhost:5000/start-stream");
+            setStreaming(true);
+        } else {
+            axios.get("http://localhost:5000/stop-stream");
+            setStreaming(false);
+        }
+    }
 
     // Fetch sensor data every second when streaming on current timestamp
     const fetchSensorData = async () => {
@@ -88,14 +102,21 @@ export default function LiveStream() {
                     height: "500px"
                 }}>
                 <div className={`stream-container `}>
-                    {!streamFail ? <iframe
+                    <iframe
                         src={`http://localhost:8889/camstream?_=${date}`}
                         allow="fullscreen"
                         style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
-                    /> :
-                    <p>Error playing stream. Please check the info tab for instructions
-                    on setting up the stream.</p>
+                    />
+                    {/*
+                    {!streamFail ? <iframe
+                            src={`http://localhost:8889/camstream?_=${date}`}
+                            allow="fullscreen"
+                            style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
+                        /> :
+                        <p>Error playing stream. Please check the info tab for instructions
+                            on setting up the stream.</p>
                     }
+                    */}
 
                     {/*
                     <iframe

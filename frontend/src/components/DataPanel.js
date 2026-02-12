@@ -30,7 +30,7 @@ export default function DataPanel({ title, ecg, hr, timeStamp}) {
             }
         }
 
-        console.log("ECG Graph Data", ecgGraphData);
+        //console.log("ECG Graph Data", ecgGraphData);
 
     }
 

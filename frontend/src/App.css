@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
 
+body {
+  margin: 0;
+  background-color: white;
+}
 .App {
   min-height: 100vh;
   text-align: center;
@@ -35,6 +39,11 @@
   text-decoration: none;
   height: 80px;
   margin-bottom: 30px;
+  width: 100%;
+}
+
+.main-nav {
+  width: 100%;
 }
 
 .App-link {
@@ -104,6 +113,8 @@ button:hover {
 }
 
 .main-wrapper {
+  margin-left: 20px;
+  margin-right: 20px;
   flex-grow: 1;
   display: flex;
   position: relative;
@@ -191,7 +202,25 @@ button:hover {
 
 
 .player-info-popup {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
   width: 170px;
   height: 170px;
   background-color: lightgray;
+}
+
+.menu-table-wrapper {
+  width: 170px;
+  background-color: lightgray;
+  position: relative;
+  align-items: center;
+}
+
+.ecg-graph-popup {
+  margin-bottom: 15px;
+}
+
+#player-button {
+
 }

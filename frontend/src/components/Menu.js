@@ -19,11 +19,10 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
 
     const style = {
         display: "flex",
-        alignItems: "stretch",
+        alignItems: "center",
+        justifyContent: "center",
         borderCollapse: "collapse",
         marginTop: "50px",
-        marginLeft: "25px",
-        left: "0px",
         position:"relative"
     }
     if(!player || !showMenu){
@@ -66,9 +65,10 @@ const Menu = ({player, showMenu, showHeartPopUp, setShowHeartPopUp, showEcgPopUp
                     </tr>
                 </table>
             </div>
-            {(showHeartPopUp && player) && <HeartRatePopup player={player}/>}
-            {showEcgPopUp && player && <EcgPopup player={player}/>}
-
+            <div>
+                {(showHeartPopUp && player) && <HeartRatePopup player={player}/>}
+                {showEcgPopUp && player && <EcgPopup player={player}/>}
+            </div>
         </div>
     )
 }

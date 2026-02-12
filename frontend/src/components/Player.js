@@ -13,11 +13,12 @@ const Player = (props) => {
         }}>
             <button id="player-button"
                 style={{
-                    backgroundColor: isClicked || isHovered ? "lightblue" : "ghostwhite",
+                    backgroundColor: isClicked || isHovered ? "#060608" : "#8d95a7",
                     fontSize: "20px",
                     height: "100%",
                     width: "100%",
-                    border: "white"
+                    border: "white",
+                    color: "ghostwhite"
                 }}
                 onClick={props.onClick}
                 onMouseEnter={props.onHover}
