@@ -9,6 +9,8 @@ export default function HistoryDataPanel ({date}) {
     const [ecgData, setEcgData] = useState([]);
     const [ecgGraphData, setEcgGraphData] = useState([]);
     const [secondsOfDay, setSecondsOfDay] = useState(0);
+    const [dataStartTime, setDataStartTime] = useState(null);
+    const [dataEndTime, setDataEndTime] = useState(null);
 
     useEffect(() => {
         if (!date) return;
@@ -28,7 +30,12 @@ export default function HistoryDataPanel ({date}) {
         try {
             const dataEcg = await getEcgByTimestamp(dayStart, endTs);
             console.log("Ecg Data: ", dataEcg);
-
+            if (dataEcg.length === 0) {
+                console.log("No ECG data available for this date.");
+                return;
+            }
+            setDataStartTime(dataEcg[0].Timestamp_UTC);
+            setDataEndTime(dataEcg[dataEcg.length - 1].Timestamp_UTC);
             setEcgData(dataEcg);
         } catch (error) {
             console.error("Error fetching heart rate data: ", error);
@@ -36,15 +43,14 @@ export default function HistoryDataPanel ({date}) {
     }
 
     const makeEcgGraphData = () => {
+        console.log("Time range of fetched data: ", dataStartTime, " to ", dataEndTime);
         let timeStamp = dayStart + secondsOfDay;
         console.log(timeStamp);
         for (let i = 0; i < ecgData.length; i++) {
-            if (ecgData[i].Timestamp_UTC === timeStamp) {
-                setEcgGraphData(ecgData[i].Samples.map((sample, index) => ({
-                    Samples: index,
-                    ecg: sample,
-                })));
-            }
+            setEcgGraphData(ecgData[i].Samples.map((sample, index) => ({
+                Samples: index,
+                ecg: sample,
+            })));
         }
     }
 
@@ -52,12 +58,11 @@ export default function HistoryDataPanel ({date}) {
         fetchDataForDay();
     }, [dayStart]);
 
-    useEffect(() => {
-        if (ecgData) {
+    useInterval(() => {
+        if (ecgData.length > 0) {
             makeEcgGraphData();
-            console.log("lol");
         }
-    }, [ecgData, secondsOfDay]);
+    }, 1000);
 
     return (
 
