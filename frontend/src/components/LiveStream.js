@@ -3,7 +3,7 @@ import axios from "axios";
 import '../styles/LiveStream.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
 import DataPanel from "./DataPanel";
-import useWebsocket from "../service/useWebsocket";
+import useWebsocket from "../service/useWebSocket";
 
 export default function LiveStream() {
     const [streaming, setStreaming] = useState(false);
@@ -12,9 +12,9 @@ export default function LiveStream() {
     const [ecgData, setEcgData] = useState(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
     const [date, setDate] = useState(null)
-    const { connected, lastMessage } = useWebsocket(process.env.REACT_APP_WEBSOCKET_URL);
+    //const { connected, lastMessage } = useWebsocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-    const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
+    //const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
     
     const streamToggle = async () => {
         if (!streaming) {

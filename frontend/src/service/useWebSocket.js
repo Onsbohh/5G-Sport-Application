@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 
 export default function useWebSocket(url) {
     const [connected, setConnected] = useState(false);
