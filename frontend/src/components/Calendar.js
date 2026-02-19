@@ -13,7 +13,8 @@ const Calendar = ({selectedDate, onDateChange}) => {
     const [startDate, setStartDate] = useState(new Date());
     return (
         <div style={{
-            marginRight: "25px"
+            left: 0,
+            position: "block"
         }}>
             <DatePicker
                 selected={selectedDate}

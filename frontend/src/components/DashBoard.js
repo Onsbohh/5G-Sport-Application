@@ -11,6 +11,7 @@ import Menu from "./Menu";
 import Select from 'react-select';
 import PlayerIcons from "./PlayerIcons";
 import {getEcgData, getGnssData, getAllGnssData, getAllHeartRateData, getHeartRateData} from "../service/sensorDataService"
+import RecentGames from "./RecentGames"
 
 
 // The main component that connects the hockey rink, player icons, player list and the player menus.
@@ -304,22 +305,33 @@ const DashBoard = () => {
         <div className="main-wrapper">
             <div className="content">
                 <Introduction/>
+                <div className="match-info">
+                    <p>Currently Streaming:</p>
+                </div>
                 <div style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
-                    <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
                 </div>
-
-                <div>
-                {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
-                <button
-                    onClick={() => setShowStream(!showStream)}
-                    className="toggle-btn"
-                >
-                    {showStream ? "Show Recorded Video" : "Show Livestream"}
-                </button>
+                <div style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    justifyContent: "center"
+                }}>
+                    {showStream ? <LiveStream/> : <VideoPlayer selectedDate={selectedDate}/>}
+                    <button
+                        onClick={() => setShowStream(!showStream)}
+                        className="toggle-btn"
+                    >
+                        {showStream ? "Show Recorded Video" : "Show Livestream"}
+                    </button>
+                    <div style={{
+                        left: "0",
+                    }}>
+                        <Calendar selectedDate={selectedDate} onDateChange={setSelectedDate}/>
+                    </div>
                 </div>
             </div>
             <div style={{
@@ -333,6 +345,7 @@ const DashBoard = () => {
                     marginTop: "30px",
                     justifyContent: "center"
                 }}>
+                    <RecentGames/>
                     <div style={rinkStyle} title={"rink container"}>
                         <img
                             src={hockey_rink}
