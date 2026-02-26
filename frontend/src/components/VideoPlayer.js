@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from "react";
 import ReactPlayer from "react-player"
 import '../styles/VideoPlayer.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
-import DataPanel from "./DataPanel";
 import HistoryDataPanel from "./HistoryDataPanel";
 
 export default function VideoPlayer ({ selectedDate }) {
@@ -43,7 +42,6 @@ export default function VideoPlayer ({ selectedDate }) {
     return (
         <div style={{width: "100%", maxWidth: "1500px", display: "flex", margin: "auto"}}>
             <div className="video-container">
-                {videoURL ? (
                     <ReactPlayer
                         src={videoURL}
                         controls={true}
@@ -60,9 +58,6 @@ export default function VideoPlayer ({ selectedDate }) {
                             fetchHeartRate(videoName, (Number(videoName) + Math.round(e.target.duration)));
                         }}
                     />
-                ) : (
-                    <HistoryDataPanel date={selectedDate}/>
-                )}
                 <button className={"video-btn"}
                     onClick={() => videoRef.current.click()}
                     >
@@ -77,12 +72,7 @@ export default function VideoPlayer ({ selectedDate }) {
                 />
 
             </div>
-            <DataPanel
-                title={"Sensor Data"}
-                hr={{data: heartRate}}
-                ecg={{data: ecgData}}
-                timeStamp={videoTimeStamp}
-            />
+            <HistoryDataPanel date={selectedDate}/>
         </div>
     );
 };
