@@ -20,7 +20,7 @@ export default function useWebSocket(url) {
         };
 
         socket.onmessage = (event) => {
-            console.log("WebSocket message received: ", event.data);
+            //console.log("WebSocket message received: ", event.data);
             setLastMessage(event.data);
         }
 

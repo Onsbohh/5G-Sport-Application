@@ -12,9 +12,31 @@ export default function LiveStream() {
     const [ecgData, setEcgData] = useState(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
     const [date, setDate] = useState(null)
-    //const { connected, lastMessage } = useWebsocket(process.env.REACT_APP_WEBSOCKET_URL);
+    const { connected, lastMessage } = useWebsocket(process.env.REACT_APP_WEBSOCKET_URL);
 
-    //const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
+    const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
+
+    useEffect(() => {
+        if (sensorData) {
+            setSensorData(sensorData);
+        }
+    }, [lastMessage]);
+
+    const setSensorData = (data) => {
+        if (data.topic === "sensors/ecg") {
+            const parsedPayload =
+                typeof data.payload === "string"
+                    ? JSON.parse(data.payload)
+                    : data.payload;
+            setEcgData(parsedPayload);
+        } else if (data.topic === "sensors/hr") {
+            const parsedPayload =
+                typeof data.payload === "string"
+                    ? JSON.parse(data.payload)
+                    : data.payload;
+             setHeartRate(parsedPayload);
+        }
+    }
     
     const streamToggle = async () => {
         if (!streaming) {
@@ -45,9 +67,8 @@ export default function LiveStream() {
                 </div>
                 <DataPanel
                     title={"Sensor Data"}
-                    hr={{data: heartRate}}
-                    ecg={{data: ecgData}}
-                    timeStamp={videoTimeStamp}
+                    hr={heartRate}
+                    ecg={ecgData}
                 />
             </div>
             <div style={{

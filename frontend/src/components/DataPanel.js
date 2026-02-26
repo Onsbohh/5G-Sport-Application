@@ -2,53 +2,36 @@ import React, { useState } from "react";
 import stylesheet from '../styles/DataPanel.css';
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-export default function DataPanel({ title, ecg, hr, timeStamp}) {
+export default function DataPanel({ title, ecg, hr}) {
     let ecgData = []; let ecgGraphData = [];
     let hrData = [];
     let minHr; let maxHr; let nowHr; let intervalHr;
 
-    if (ecg.data && hr.data) {
-        ecgData = ecg.data;
-        hrData = hr.data;
+    if (ecg) {
+        console.log("ECG FULL OBJECT:", ecg);
+        console.log("LOL", ecg.Samples);
 
-        minHr= Math.min(...hrData.map(d => d.Average_BPM));
-        maxHr = Math.max(...hrData.map(d => d.Average_BPM));
+        ecgGraphData = ecg.Samples.map((sample, index) => ({
+            index: index,
+            ecg: sample,
+        }));
 
-        for (let i = 0; i < hrData.length; i++) {
-            if (hrData[i].Timestamp_UTC === timeStamp) {
-                nowHr = hrData[i].Average_BPM
-                intervalHr = hrData[i].rrData[0];
-            }
-        }
-
-        for (let i = 0; i < ecgData.length; i++) {
-            if (ecgData[i].Timestamp_UTC == timeStamp) {
-                ecgGraphData = ecgData[i].Samples.map((sample, index) => ({
-                    Samples: index,
-                    ecg: sample,
-                }));
-            }
-        }
-
-        //console.log("ECG Graph Data", ecgGraphData);
-
+        console.log("ECG Graph Data", ecgGraphData);
     }
 
 
     return (
         <div className="DataPanel-container">
             <h3>{title}</h3>
-            {hr.data ? (
+            {hr ? (
                 <div>
-                    <p>Lowest HR: {minHr}</p>
                     <p>HR now: {nowHr}</p>
-                    <p>Highest HR: {maxHr}</p>
                     <p>R-R interval: {intervalHr}</p>
                 </div>
             ) : (
                 <p>No heart rate data available.</p>
             )}
-            {ecg.data ? (
+            {ecg ? (
                 <div>
                     <LineChart width={550} height={200} data={ecgGraphData}>
                         <CartesianGrid stroke="#ccc"/>
