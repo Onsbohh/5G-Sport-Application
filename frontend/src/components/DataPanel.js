@@ -8,15 +8,18 @@ export default function DataPanel({ title, ecg, hr}) {
     let minHr; let maxHr; let nowHr; let intervalHr;
 
     if (ecg) {
-        console.log("ECG FULL OBJECT:", ecg);
-        console.log("LOL", ecg.Samples);
-
         ecgGraphData = ecg.Samples.map((sample, index) => ({
             index: index,
             ecg: sample,
         }));
 
         console.log("ECG Graph Data", ecgGraphData);
+    }
+
+    if (hr) {
+        console.log("Heart Rate Data: ", hr);
+        nowHr = hr.Average_BPM;
+        intervalHr = hr.rrData;
     }
 
 
@@ -35,7 +38,7 @@ export default function DataPanel({ title, ecg, hr}) {
                 <div>
                     <LineChart width={550} height={200} data={ecgGraphData}>
                         <CartesianGrid stroke="#ccc"/>
-                        <XAxis dataKey="Samples"/>
+                        <XAxis dataKey="index"/>
                         <YAxis/>
                         <Line type="linear" dataKey="ecg" stroke="#8884d8" dot={false} strokeWidth={2}/>
                     </LineChart>
