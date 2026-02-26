@@ -12,12 +12,9 @@ export default function DataPanel({ title, ecg, hr}) {
             index: index,
             ecg: sample,
         }));
-
-        console.log("ECG Graph Data", ecgGraphData);
     }
 
     if (hr) {
-        console.log("Heart Rate Data: ", hr);
         nowHr = hr.Average_BPM;
         intervalHr = hr.rrData;
     }
