@@ -26,7 +26,7 @@ const PlayerList = ({players, onPlayerClick, hoveredPlayer, setHoveredPlayer, on
                 <tbody>
                 {players.map((player) => (
                 <tr key={player.id}>
-                    <td style={{height:"20px"}}>
+                    <td>
                         <Player
                             id={player.id}
                             name={player.name}

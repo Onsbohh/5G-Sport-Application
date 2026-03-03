@@ -13,12 +13,35 @@ const RecentGames = () => {
             team1: "Anaheim",
             team2: "Chicago",
             score: "2 - 0"
+        },
+        {
+            id: 3,
+            team1: "Calgary",
+            team2: "Pittsburgh",
+            score: "2 - 5"
+        },
+        {
+            id: 4,
+            team1: "Edmonton",
+            team2: "Florida",
+            score: "2 - 5"
+        },
+        {
+            id: 5,
+            team1: "Anaheim",
+            team2: "Florida",
+            score: "2 - 5"
         }
     ]
     const style = {
         backgroundColor: 'white',
         width: '150px'
     }
+
+    const showGames = () => {
+        return games.map((game) => (
+            <tr key={game.id} style={{}}></tr>
+        ))}
     return (
         <div className="recent-games">
             <table style={style}>
