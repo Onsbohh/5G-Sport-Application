@@ -18,14 +18,15 @@ export default function HistoryDataPanel ({date}) {
         d.setHours(0, 0, 0, 0);
         console.log(d);
         const ts = Math.floor(d.getTime() / 1000);
-        setDayStart(ts)
+        setDayStart(ts*1000000000);
         console.log("Selected date from Calendar:", d, "=>", ts);
     }, [date]);
 
     const fetchDataForDay = async () => {
         if (!dayStart) return;
-        const endTs = dayStart + 86400; // Add 24 hours in seconds
-        setDayEnd(endTs);
+        const endTs = dayStart + 86400*1000000000; // Add 24 hours in nanoseconds
+        console.log("Calculated day end timestamp: ", endTs);
+        setDayEnd(endTs*1000000000);
         console.log("Fetching data from ", dayStart, " to ", endTs);
         try {
             const dataEcg = await getEcgByTimestamp(dayStart, endTs);
@@ -58,11 +59,7 @@ export default function HistoryDataPanel ({date}) {
         fetchDataForDay();
     }, [dayStart]);
 
-    useInterval(() => {
-        if (ecgData.length > 0) {
-            makeEcgGraphData();
-        }
-    }, 1000);
+
 
     return (
 
