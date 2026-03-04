@@ -1,0 +1,13 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    container_name: sport-frontend
+    ports:
+      - "3000:3000"
+    env_file: ./frontend/.env
+    environment:
+      - WATCHPACK_POLLING=true
+      - CI=true
+    stdin_open: true
+    tty: true

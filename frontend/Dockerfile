@@ -1,8 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="nuutt"
-
-ENTRYPOINT ["top", "-b"]
-
 # Use the latest LTS version of Node.js
 FROM node:18-alpine
 
@@ -17,6 +12,10 @@ RUN npm install
 
 # Copy the rest of your application files
 COPY . .
+
+# Set environment variable to expose dev server on all interfaces
+ENV HOST=0.0.0.0
+ENV PORT=3000
 
 # Expose the port your app runs on
 EXPOSE 3000
