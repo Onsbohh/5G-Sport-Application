@@ -2,7 +2,7 @@ version: '3'
 services:
   frontend:
     build: ./frontend
-    container_name: sport-frontend
+    container_name: 5G-sport-frontend
     ports:
       - "3000:3000"
     env_file: ./frontend/.env
@@ -13,7 +13,7 @@ services:
     tty: true
   server:
     build: ./server
-    container_name: sport-server
+    container_name: 5G-sport-server
     ports:
       - "5000:5000"
     depends_on:
@@ -23,7 +23,7 @@ services:
     privileged: true
   mediamtx:
     image: bluenviron/mediamtx:latest
-    container_name: sport-mediamtx
+    container_name: 5G-sport-mediamtx
     ports:
       - "8554:8554"  # RTSP
       - "8888:8888"  # HLS
