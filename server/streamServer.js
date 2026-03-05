@@ -15,9 +15,9 @@ app.post('/start-stream', (req, res) => {
 
     // Ffmpeg location argument needs to be changed based on where ffmpeg is located
     // Also the video input device name needs to be changed based on the system
-    ffmpegProcess = spawn('C:\\Users\\nuutt\\Downloads\\ffmpeg-2025-12-18-git-78c75d546a-essentials_build\\ffmpeg-2025-12-18-git-78c75d546a-essentials_build\\bin\\ffmpeg.exe', [
-        '-f', 'dshow',
-        '-i', 'video=Integrated Camera',
+    ffmpegProcess = spawn('ffmpeg', [
+        '-f', 'v4l2',
+        '-i', '/dev/video0',
         '-pix_fmt', 'yuv420p',
         '-preset', 'veryfast',
         '-tune', 'zerolatency',
@@ -26,7 +26,7 @@ app.post('/start-stream', (req, res) => {
         '-maxrate', '2500k',
         '-bufsize', '5000k',
         '-f', 'rtsp',
-        'rtsp://localhost:8554/camstream'
+        'rtsp://mediamtx:8554/camstream'
     ]);
 
     ffmpegProcess.stderr.on('data', (data) => {

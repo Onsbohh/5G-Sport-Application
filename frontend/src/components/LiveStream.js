@@ -40,10 +40,10 @@ export default function LiveStream() {
     
     const streamToggle = async () => {
         if (!streaming) {
-            axios.post("http://localhost:5000/start-stream");
+            axios.post(`${process.env.REACT_APP_STREAM_SERVER_URL}/start-stream`);
             setStreaming(true);
         } else {
-            axios.get("http://localhost:5000/stop-stream");
+            axios.get(`${process.env.REACT_APP_STREAM_SERVER_URL}/stop-stream`);
             setStreaming(false);
         }
     }
@@ -60,7 +60,7 @@ export default function LiveStream() {
                 }}>
                 <div className={`stream-container `}>
                     <iframe
-                        src={`http://localhost:8889/camstream?_=${date}`}
+                        src={`${process.env.REACT_APP_MEDIAMTX_URL}/camstream?_=${date}`}
                         allow="fullscreen"
                         style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
                     />

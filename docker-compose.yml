@@ -11,3 +11,20 @@ services:
       - CI=true
     stdin_open: true
     tty: true
+  server:
+    build: ./server
+    container_name: sport-server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mediamtx
+    devices:
+      - /dev/video0:/dev/video0
+    privileged: true
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: sport-mediamtx
+    ports:
+      - "8554:8554"  # RTSP
+      - "8888:8888"  # HLS
+      - "8889:8889"  # WebRTC
