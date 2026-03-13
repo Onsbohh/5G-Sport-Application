@@ -2,8 +2,6 @@ services:
   frontend:
     build: ./frontend
     container_name: 5g-sport-frontend
-    ports:
-      - "3000:3000"
     env_file: ./frontend/.env
     environment:
       - WATCHPACK_POLLING=true
@@ -13,8 +11,6 @@ services:
   server:
     build: ./server
     container_name: 5g-sport-server
-    ports:
-      - "5000:5000"
     depends_on:
       - mediamtx
     devices:
@@ -23,10 +19,6 @@ services:
   mediamtx:
     image: bluenviron/mediamtx:latest
     container_name: 5g-sport-mediamtx
-    ports:
-      - "8554:8554"  # RTSP
-      - "8888:8888"  # HLS
-      - "8889:8889"  # WebRTC
   nginx:
     image: nginx:latest
     container_name: 5g-sport-nginx
@@ -37,3 +29,4 @@ services:
     depends_on:
       - frontend
       - server
+      - mediamtx
