@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import axios from "axios";
 import '../styles/LiveStream.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
@@ -13,7 +13,8 @@ export default function LiveStream() {
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
     const [date, setDate] = useState(null)
     const { connected, lastMessage } = useWebsocket(process.env.REACT_APP_WEBSOCKET_URL);
-
+    const videoRef  = useRef(null);
+    const pcRef = useRef(null);
     const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
 
     useEffect(() => {
@@ -40,10 +41,35 @@ export default function LiveStream() {
     
     const streamToggle = async () => {
         if (!streaming) {
-            axios.post(`${process.env.REACT_APP_STREAM_SERVER_URL}/start-stream`);
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+            videoRef.current.srcObject = stream;
+
+            const pc = new RTCPeerConnection();
+            pcRef.current = pc;
+            stream.getTracks().forEach(track => pc.addTrack(track, stream));
+
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+
+            const response = await fetch(`${process.env.REACT_APP_MEDIAMTX_URL}/camstream/whip`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/sdp'
+                },
+                body: offer.sdp
+            });
+            const answer = await response.text();
+            await pc.setRemoteDescription(new RTCSessionDescription({
+                type: 'answer',
+                sdp: answer
+            }));
+            //axios.post(`${process.env.REACT_APP_STREAM_SERVER_URL}/start-stream`);
             setStreaming(true);
         } else {
-            axios.get(`${process.env.REACT_APP_STREAM_SERVER_URL}/stop-stream`);
+            pcRef.current.close();
+            videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+            videoRef.current.srcObject = null;
+            //axios.get(`${process.env.REACT_APP_STREAM_SERVER_URL}/stop-stream`);
             setStreaming(false);
         }
     }
@@ -59,11 +85,7 @@ export default function LiveStream() {
                     height: "500px"
                 }}>
                 <div className={`stream-container `}>
-                    <iframe
-                        src={`${process.env.REACT_APP_MEDIAMTX_URL}/camstream?_=${date}`}
-                        allow="fullscreen"
-                        style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}}
-                    />
+                    <video ref={videoRef} autoPlay muted style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}} />
                 </div>
                 <DataPanel
                     title={"Sensor Data"}
