@@ -85,7 +85,7 @@ export default function LiveStream() {
                     height: "500px"
                 }}>
                 <div className={`stream-container `}>
-                    <video ref={videoRef} autoPlay muted style={{width: "100%", height: "100%", borderRadius: "8px", border: "none"}} />
+                    <video ref={videoRef} autoPlay muted controls style={{width: "100%", height: "100%", borderRadius: "8px", border: "none", backgroundColor: "black"}} />
                 </div>
                 <DataPanel
                     title={"Sensor Data"}
