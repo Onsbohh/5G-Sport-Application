@@ -1,5 +1,4 @@
 import React, {useEffect, useState, useRef} from "react";
-import axios from "axios";
 import '../styles/LiveStream.css';
 import {getHeartRateByTimestamp, getEcgByTimestamp} from "../service/sensorDataService"
 import DataPanel from "./DataPanel";
@@ -7,7 +6,6 @@ import useWebsocket from "../service/useWebSocket";
 
 export default function LiveStream() {
     const [streaming, setStreaming] = useState(false);
-    const [streamFail, setStreamFail] = useState(false)
     const [heartRate, setHeartRate] = useState(null);
     const [ecgData, setEcgData] = useState(null);
     const [videoTimeStamp, setVideoTimeStamp] = useState(null);
@@ -16,6 +14,8 @@ export default function LiveStream() {
     const videoRef  = useRef(null);
     const pcRef = useRef(null);
     const sensorData = lastMessage ? JSON.parse(lastMessage) : null;
+    const [isPublisher, setIsPublisher] = useState(false);
+    const [isViewer, setIsViewer] = useState(false);
 
     useEffect(() => {
         if (sensorData) {
@@ -38,7 +38,28 @@ export default function LiveStream() {
              setHeartRate(parsedPayload);
         }
     }
-    
+
+    const checkStreamExists = async () => {
+        try {
+            // Try to get stream info via WHEP (will fail if no stream)
+            const pc = new RTCPeerConnection();
+            pc.addTransceiver('video', { direction: 'recvonly' });
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+
+            const response = await fetch(`${process.env.REACT_APP_MEDIAMTX_URL}/camstream/whep`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/sdp' },
+                body: offer.sdp
+            });
+
+            pc.close();
+            return response.ok;
+        } catch (error) {
+            return false;
+        }
+    };
+
     const streamToggle = async () => {
         if (!streaming) {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
@@ -63,17 +84,80 @@ export default function LiveStream() {
                 type: 'answer',
                 sdp: answer
             }));
-            //axios.post(`${process.env.REACT_APP_STREAM_SERVER_URL}/start-stream`);
             setStreaming(true);
+            setIsPublisher(true);
+            setIsViewer(false);
         } else {
+            if (isViewer) {
+                alert("Not allowed")
+                return;
+            }
             pcRef.current.close();
             videoRef.current.srcObject.getTracks().forEach(track => track.stop());
             videoRef.current.srcObject = null;
-            //axios.get(`${process.env.REACT_APP_STREAM_SERVER_URL}/stop-stream`);
             setStreaming(false);
         }
     }
-    
+
+    const startViewing = async () => {
+        try {
+            // Create peer connection for receiving
+            const pc = new RTCPeerConnection();
+            pcRef.current = pc;
+
+            // Add transceiver for receiving video only
+            pc.addTransceiver('video', { direction: 'recvonly' });
+
+            // Handle incoming stream
+            pc.ontrack = (event) => {
+                if (videoRef.current) {
+                    videoRef.current.srcObject = event.streams[0];
+                }
+            };
+
+            // Create offer
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+
+            // Send to WHEP endpoint
+            const response = await fetch(`${process.env.REACT_APP_MEDIAMTX_URL}/camstream/whep`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/sdp'
+                },
+                body: offer.sdp
+            });
+
+            if (!response.ok) {
+                throw new Error(`No stream available to watch`);
+            }
+
+            const answer = await response.text();
+            await pc.setRemoteDescription(new RTCSessionDescription({
+                type: 'answer',
+                sdp: answer
+            }));
+
+            console.log("Now watching the stream");
+            setIsViewer(true);
+            setIsPublisher(false);
+        } catch (error) {
+            console.error("Error watching stream:", error);
+        }
+    };
+
+    useEffect(() => {
+        const autoView = async () => {
+            const exists = await checkStreamExists();
+            if (exists) {
+                setStreaming(true);
+                console.log("Stream detected, auto-starting viewer");
+                await startViewing();
+            }
+        };
+        autoView();
+    }, []);
+
     return (
         <>
             <div style={
