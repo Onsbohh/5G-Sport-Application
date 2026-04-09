@@ -18,6 +18,6 @@ services:
       - ./mediamtx.yml:/mediamtx.yml
       - ./recordings:/recordings
     ports:
-      - "8889:8889"        # HTTP/WebRTC API port (WHIP/WHEP)
-      - "8189:8189/udp"    # RTMP/RTSP UDP (you already have this)
+      - "8889:8889"
+      - "8189:8189/udp"
 

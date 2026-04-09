@@ -2,31 +2,12 @@
 
 In this project we are continuing a multi-year project 5G Sport.
 
-Instructions to stream:
+Project uses Docker to run the application including video streaming. 
 
-Download:
-  - MediaMTX https://github.com/bluenviron/mediamtx/releases
-  - FFmpeg https://www.gyan.dev/ffmpeg/builds/
-      - At the bottom download ffmpeg-release-essentials.7z
-
-Edit backend/server/streamServer.js:
-  - Line 14 change to use ffmpeg.exe location.
-  - Line 16 "video=" change to use your webcam name. Can be found in windows settings.
-
-Edit Mediamtx.yml:
-  - Inside of Mediamtx folder is mediamtx.yml
-  - Find recordPath:
-    -  Change path to ./recordings/%path/%s
-    -  Now file name format is unix timestamp in seconds. 
-  - Find at the bottom paths:
-    - Change to 
-          camstream:
-             record: yes
-
-Start: 
-  - Run mediamtx.exe
-    -   This should open a console. 
-  - Run  streamServer.js (node streamServer.js)
-  - Run React Application (nmp start)
+How to run the application:
+* Install Docker
+* Clone the repository
+* Run `docker-compose up` in the project directory
+* By editing mediamtx.yml you can change the streaming settings, like the path for recordings
 
 Now it should work by pressing the Start Stream button. 
