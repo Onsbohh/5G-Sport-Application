@@ -1,0 +1,11 @@
+webrtcAdditionalHosts:
+  - 0.0.0.0
+
+pathDefaults:
+  record: yes
+  recordPath: /recordings/%path/%s
+  recordFormat: fmp4
+
+paths:
+  camstream:
+    source: publisher

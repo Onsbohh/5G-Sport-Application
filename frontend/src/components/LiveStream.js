@@ -62,12 +62,28 @@ export default function LiveStream() {
 
     const streamToggle = async () => {
         if (!streaming) {
+            const pc = new RTCPeerConnection();
+            pcRef.current = pc;
+
+            const transceiver = pc.addTransceiver("video", {
+                direction: "sendonly"
+            });
+
+            const caps = RTCRtpSender.getCapabilities("video");
+            const h264Codecs = caps.codecs.filter(c =>
+                c.mimeType.toLowerCase() === "video/h264"
+            );
+
+            const preferred = h264Codecs.sort(c =>
+                c.sdpFmtpLine?.includes("packetization-mode=1") ? -1 : 1
+            );
+
+            transceiver.setCodecPreferences(preferred);
             const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
             videoRef.current.srcObject = stream;
 
-            const pc = new RTCPeerConnection();
-            pcRef.current = pc;
-            stream.getTracks().forEach(track => pc.addTrack(track, stream));
+            const videoTrack = stream.getVideoTracks()[0];
+            await transceiver.sender.replaceTrack(videoTrack);
 
             const offer = await pc.createOffer();
             await pc.setLocalDescription(offer);

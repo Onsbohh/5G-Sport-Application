@@ -10,9 +10,14 @@ services:
       - CI=true
     stdin_open: true
     tty: true
+
   mediamtx:
     image: bluenviron/mediamtx:latest
     container_name: 5g-sport-mediamtx
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml
+      - ./recordings:/recordings
     ports:
-      - "8554:8554"
-      - "8889:8889"
+      - "8889:8889"        # HTTP/WebRTC API port (WHIP/WHEP)
+      - "8189:8189/udp"    # RTMP/RTSP UDP (you already have this)
+
