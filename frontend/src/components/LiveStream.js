@@ -179,13 +179,14 @@ export default function LiveStream() {
             <div style={
                 {
                     width: "100%",
-                    maxWidth: "1500px",
                     margin: "auto",
                     display: "flex",
-                    height: "500px"
+                    flexWrap: "wrap",
+                    allignItems: "stretch",
+                    gap: "10px",
                 }}>
                 <div className={`stream-container `}>
-                    <video ref={videoRef} autoPlay muted controls style={{width: "100%", height: "100%", borderRadius: "8px", border: "none", backgroundColor: "black"}} />
+                    <video ref={videoRef} autoPlay muted controls className={`video-box`} />
                 </div>
                 <DataPanel
                     title={"Sensor Data"}

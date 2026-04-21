@@ -1,6 +1,7 @@
 .DataPanel-container {
-    flex: 1;
+    flex: 3;
     background-color: darkgray;
-    width: 5000px;
+    min-width: 300px;
     padding: 5px;
+    border-radius: 8px;
 }
